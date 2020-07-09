@@ -1,18 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Routes } from './routes/index.jsx';
+// Style
+import style from './home.module.css';
+// MealDBRoutes
+import { MealDBRoutes } from './router.jsx';
 
-class MealDBRouter extends React.Component {
-	render() {
-		return(
+function MealDB() {
+	return(
+		<div className={ style.pgContent }>
 			<Router>
-				{/*		Links*		*/}
-				{/*		Routes		*/}
-				<Routes />
+				<MealDBRoutes />
 			</Router>
-		);
-	}
+		</div>
+	);
 }
 
-export { MealDBRouter } 
+export { MealDB } 

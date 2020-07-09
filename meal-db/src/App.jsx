@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 
-import { Background } from './static/background.js';
-import { MealDBRouter } from './router/index.jsx';
+import { Background } from './bg/background.jsx';
+import { MealDB } from './router/index.jsx';
 
 class App extends React.Component {
 
@@ -10,7 +10,7 @@ class App extends React.Component {
 		return (
 			<div className="App">
 	    		<Background />
-	    		<MealDBRouter />
+	    		<MealDB />
 	    	</div>
 		);
 	}
