@@ -1,0 +1,17 @@
+.tag {
+	background: linear-gradient(25deg, rgb(46,113,166), rgb(153,213,249));
+	border-radius:5px;
+	padding: 15px 20px 14px 18px;
+	width:150px;
+	margin:0;
+}
+.tag:hover {
+	cursor: pointer;
+}
+.button {
+	position:relative;
+	text-decoration: none;
+	color:white;
+	font-weight:bold;
+	margin:0px;
+}

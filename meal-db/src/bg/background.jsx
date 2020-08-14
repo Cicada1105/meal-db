@@ -13,7 +13,7 @@ class Background extends React.Component {
 
 		let grd = ctx.createLinearGradient(0,0,0,150);
 
-		grd.addColorStop(0,"rgb(178,180,248)");
+		grd.addColorStop(0,"rgb(147,119,247)");
 		grd.addColorStop(1,"#8bd8ff");
 
 		ctx.fillStyle = grd;

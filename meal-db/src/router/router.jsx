@@ -1,5 +1,4 @@
 import React from 'react';
-import {  } from 'react-router-dom';
 
 // Component Routes
 import { AreasRouter } from './components/areas/router.jsx';

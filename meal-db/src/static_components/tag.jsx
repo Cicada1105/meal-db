@@ -1,11 +1,19 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import style from './static_style.module.css';
 
-class Tag extends React.Component {
-	render() {
-		return (
-			<div>
-				{ this.props.name }
-			</div>
-		);
+function Tag(props) {
+	let history = useHistory();
+
+	function navigate(pathIn) {
+		history.push(pathIn);
 	}
+
+	return (
+		<div className={ style.tag } onClick={() => navigate(props.path)}>
+			{ props.children }
+		</div>
+	);
 }
+
+export { Tag }

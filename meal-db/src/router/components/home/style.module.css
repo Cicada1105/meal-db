@@ -1,0 +1,64 @@
+h2 {
+	font-weight: bold;
+	color:white;
+}
+.row {
+	background-color: aqua;
+	position:relative;
+	width:60rem;
+	height:6rem;
+	margin:8rem auto 1rem auto;
+}
+.row > div {
+	position:relative;
+	height:100%;
+	display: inline-block;
+}
+/*		Odd Rows: button on left and card on right		*/
+.row:nth-of-type(odd) > div.btnCont {
+	float:left;
+}
+.row:nth-of-type(odd) > div.cardCont {
+	float:right;
+}
+/*		Even Rows: button on right and card on left		*/
+.row:nth-of-type(even) > div.btnCont {
+	float:right;
+}
+.row:nth-of-type(even) > div.cardCont {
+	float:left;
+}
+div.btnCont {
+	width:188px;
+	margin:0 2.5rem;
+}
+div.btnCont > div {
+	position:absolute;
+	top:50%;
+	transform: translateY(-50%);
+}
+div.cardCont {
+	width: 15rem;
+	font-size:1.15rem;
+}
+.cardCont > img {
+	position:relative;
+}
+img.cardBg1 {
+	height: 150%;
+	top:-20%;
+}
+.row:nth-of-type(2) img.cardBg1 {
+	left:-3rem;
+}
+.row:nth-of-type(3) img.cardBg1, .row:nth-of-type(5) img.cardBg1 {
+	right:3rem;
+}
+img.cardBg2 {
+	width:125%;
+	top:-25px;
+	left:-12%;
+}
+img.cardBg2:first-of-type {
+	transform:rotateX(180deg);
+}

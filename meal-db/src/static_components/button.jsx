@@ -1,13 +1,14 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Tag } from './tag.jsx';
+import styles from './static_style.module.css';
 
-class Button extends React.Component {
-	render() {
-		const { history } = this.props;
-		return(
-			<button onClick={() => history.push(this.props.link)}>{ this.props.name }</button>
-		);
-	}
+function Button(props) {
+	return(
+		<Tag path={ props.path }>
+			<Link to={props.path} className={ styles.button } onClick={(e) => e.preventDefault()}>{ props.text }</Link>
+		</Tag>
+	);
 }
 
-export default withRouter(Button)
+export { Button }

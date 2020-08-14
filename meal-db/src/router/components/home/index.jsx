@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 
 // Data
-//import { linkData } from './data.jsx';
+import { linkData } from './data.jsx';
 // Components
-//	Static 
-//import Button from '../../../static_components/button.jsx';
+import { Row } from './row.jsx';
 
 function Home() {
-	const location = useLocation();
 	useEffect(() => {
 		console.log("useEffect in Home functional component");
-		console.log(location);
 	});
 	return(
 		<React.Fragment>
-			<div>MealDB</div>
-			<Link to="/Categories">Categories</Link>
+			<h2>MealDB</h2>
+			{linkData.map((link,i) => 
+				<Row key={i} btn={link.button} btnDir={ i % 2 } imgNum={link.imgNum} descr={link.description} />
+			)}
 		</React.Fragment>
 	);
 }
