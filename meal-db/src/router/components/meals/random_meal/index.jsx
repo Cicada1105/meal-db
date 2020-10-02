@@ -41,20 +41,20 @@ class RandomMeal extends React.Component {
 			<React.Fragment>
 				<h2>Random</h2>
 
-				<label htmlFor="name" />
-				<div name="name">
+				<label htmlFor="name">Meal: </label>
+				<span name="name">
 					{this.state.meal["strMeal"]}
-				</div>
+				</span><br />
 
-				<label htmlFor="category" />
-				<div name="category">
+				<label htmlFor="category">Category: </label>
+				<span name="category">
 					{this.state.meal["strCategory"]}
-				</div>
+				</span><br />
 
-				<label htmlFor="area" />
-				<div name="area">
+				<label htmlFor="area">Area: </label>
+				<span name="area">
 					{this.state.meal["strArea"]}
-				</div>
+				</span><br />
 			</React.Fragment>
 		);
 	}

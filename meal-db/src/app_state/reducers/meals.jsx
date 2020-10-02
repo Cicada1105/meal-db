@@ -1,11 +1,13 @@
 import { 
-	FILTER_BY_NAME, FILTER_BY_CATEGORY, FILTER_BY_INGREDIENT, FILTER_BY_AREA,
-	GET_RANDOM_MEAL, GET_CATEGORIES, GET_INGREDIENTS, GET_AREAS
+	FILTER_BY_NAME, FILTER_BY_ID, FILTER_BY_CATEGORY, 
+	FILTER_BY_INGREDIENT, FILTER_BY_AREA, GET_RANDOM_MEAL, 
+	GET_CATEGORIES, GET_INGREDIENTS, GET_AREAS
 } from '../actions.jsx';
 
 export const mealsReducer = (state = [], action) => {
 	switch(action.type) {
 		case FILTER_BY_NAME:
+		case FILTER_BY_ID:
 			return [action.payload["mealRecipe"]]
 		case FILTER_BY_CATEGORY:
 		case FILTER_BY_INGREDIENT:
