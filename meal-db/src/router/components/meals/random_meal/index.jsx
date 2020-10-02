@@ -33,8 +33,6 @@ class RandomMeal extends React.Component {
 				meal: this.props.meal
 			}));
 		}
-
-		return true;
 	}
 	render() {
 		return(

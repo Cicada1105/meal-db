@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { filterID } from '../../../app_state/action_creators/filterActions';
+import { filterID } from '../../../app_state/action_creators/filterActions.jsx';
 
 class Meal extends React.Component {
 	constructor(props) {
