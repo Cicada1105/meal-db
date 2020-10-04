@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { filterArea } from '../../../app_state/action_creators/filterActions.jsx';
+import { getAreas } from '../../../app_state/action_creators/getActions.jsx';
 
 class Areas extends React.Component {
 	constructor(props) {
@@ -31,7 +31,7 @@ class Areas extends React.Component {
 		    ]
 		}
 
-		this.props.filterArea(data);
+		this.props.getAreas(data);
 	}
 	componentDidUpdate(prevProps,prevState) {
 		console.log(prevState);
@@ -69,5 +69,5 @@ const mapStateToProps = state => {
 
 export default connect(
 	mapStateToProps,
-	{ filterArea }
+	{ getAreas }
 )(Areas)
