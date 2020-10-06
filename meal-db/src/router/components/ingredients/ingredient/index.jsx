@@ -12,31 +12,9 @@ class Ingredient extends React.Component {
 		}
 	}
 	componentDidMount() {
-		const data = {
-			meals: [
-				{
-			      strMeal: "Chick-Fil-A Sandwich",
-			      strMealThumb: "https://www.themealdb.com/images/media/meals/sbx7n71587673021.jpg",
-			      idMeal: 53016
-    			},
-			    {
-			      strMeal: "Chicken Couscous",
-			      strMealThumb: "https://www.themealdb.com/images/media/meals/qxytrx1511304021.jpg",
-			      idMeal: 52850
-			    },
-			    {
-			      strMeal: "Chicken Fajita Mac and Cheese",
-			      strMealThumb: "https://www.themealdb.com/images/media/meals/qrqywr1503066605.jpg",
-			      idMeal: 52818
-			    },
-			    {
-			      strMeal: "Chicken Ham and Leek Pie",
-			      strMealThumb: "https://www.themealdb.com/images/media/meals/xrrtss1511555269.jpg",
-			      idMeal: 52875
-			    }
-			]
-		}
-		this.props.filterIngredient(data);
+		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${this.state.ingredientID}`)
+			.then(response => response.json())
+			.then(data => this.props.filterIngredient(data));
 	}
 	componentDidUpdate(prevProps,prevState) {
 		if (prevState.meals.length === 0) {
