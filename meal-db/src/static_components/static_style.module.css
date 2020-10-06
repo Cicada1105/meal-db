@@ -3,7 +3,6 @@
 	border-radius:5px;
 	padding: 15px 20px 14px 18px;
 	width:150px;
-	margin:0;
 }
 .tag:hover {
 	cursor: pointer;
@@ -14,4 +13,37 @@
 	color:white;
 	font-weight:bold;
 	margin:0px;
+}
+.imgCard {
+	position:relative;
+	color:white;
+	width:400px;
+	height:500px;
+}
+.imgCard > h3 {
+	position:relative;
+	margin:1rem auto;
+	text-align: center;
+	width:80%;
+	z-index: 2;
+}
+.imgCard > img {
+	position:relative;
+	width:80%;
+	z-index: 2;
+}
+.imgCard > div.imgCardBg {
+	background-color:white;
+	position:absolute;
+	opacity:0.5;
+	width:400px;
+	height:500px;
+	top:0px;
+	z-index: 1;
+}
+.imgCard > div:last-of-type {
+	position:relative;
+	margin:auto;
+	margin-top:1rem;
+	z-index: 2;
 }

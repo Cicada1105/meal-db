@@ -1,10 +1,16 @@
 import React from 'react';
 
-function ImageCard() {
+import { Button } from './button.jsx';
+import styles from './static_style.module.css';
+
+function ImageCard(props) {
 	return (
-		<div>
-			Image Card
-		</div>
+		<section className={styles.imgCard}>
+			<h3>{props.text}</h3>
+			<img src={props.imageURL} alt={props.imageAlt} />
+			<div className={styles.imgCardBg}></div>
+			<Button text="View Recipe" path={props.recipeLink} />
+		</section>	
 	);
 }
 

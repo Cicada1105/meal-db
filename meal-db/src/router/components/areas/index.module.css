@@ -1,0 +1,24 @@
+.bg {
+	background-color:white;
+	position:absolute;
+	display:block;
+	opacity: 0.5;
+	height:90vh;
+	width:50vw;
+	z-index: 1;
+	left:25vw;
+}
+.areasSection {
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	overflow-y:scroll;
+	position:relative;
+	margin:auto;
+	width:50vw;
+	height:90vh;
+	z-index: 2;
+}
+.areasSection > div {
+	margin:2.5rem 5rem;
+}
