@@ -12,27 +12,9 @@ class Category extends React.Component {
 		}
 	}
 	componentDidMount() {
-		const data = {
-			meals: [
-			    {
-			      strMeal: "Baked salmon with fennel & tomatoes",
-			      strMealThumb: "https://www.themealdb.com/images/media/meals/1548772327.jpg",
-			      idMeal: "52959"
-			    },
-			    {
-			      strMeal: "Cajun spiced fish tacos",
-			      strMealThumb: "https://www.themealdb.com/images/media/meals/uvuyxu1503067369.jpg",
-			      idMeal: "52819"
-			    },
-			    {
-			      strMeal: "Escovitch Fish",
-			      strMealThumb: "https://www.themealdb.com/images/media/meals/1520084413.jpg",
-			      idMeal: "52944"
-			    }
-    		]
-		}
-
-		this.props.filterCategory(data);
+		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${this.state.categoryID}`)
+			.then(response => response.json())
+			.then(data => this.props.filterCategory(data));
 	}
 	componentDidUpdate(prevProps,prevState) {
 		if (prevState["meals"].length === 0) {

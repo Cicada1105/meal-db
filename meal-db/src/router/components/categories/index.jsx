@@ -11,24 +11,9 @@ class Categories extends React.Component {
 		}
 	}
 	componentDidMount() {
-		const data = {
-			meals: [	
-			    {
-			      strCategory: "Beef"
-			    },
-			    {
-			      strCategory: "Breakfast"
-			    },
-			    {
-			      strCategory: "Chicken"
-			    },
-			    {
-			      strCategory: "Dessert"
-			    }
-			]
-		}
-
-		this.props.getCategories(data);
+		fetch("https://www.themealdb.com/api/json/v1/1/list.php?c=list")
+			.then(response => response.json())
+			.then(data => this.props.getCategories(data));
 	}
 	componentDidUpdate(prevProps,prevState) {
 		if (prevState["categories"].length === 0) {
