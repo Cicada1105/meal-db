@@ -7,7 +7,7 @@ class Meal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mealID: this.props.match.params.mealID,
+			mealID: props.match.params.mealID,
 			meal: {
 				strMeal: "",
 				strCategory: "",
@@ -16,16 +16,9 @@ class Meal extends React.Component {
 		}
 	}
 	componentDidMount() {
-		const data = {
-			meals: [
-				{
-					strMeal: "Teriyaki Chicken Casserole",
-					strCategory: "Chicken",
-					strArea: "Japanese"
-				}
-			]
-		}
-		this.props.filterID(data);
+		fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.state.mealID}`)
+			.then(response => response.json())
+			.then(data => this.props.filterID(data));
 	}
 	componentDidUpdate(prevProps,prevState) {
 		if (prevState.meal["strMeal"].localeCompare("") === 0) {

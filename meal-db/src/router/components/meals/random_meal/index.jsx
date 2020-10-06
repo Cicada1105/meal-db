@@ -14,18 +14,9 @@ class RandomMeal extends React.Component {
 		};
 	}
 	componentDidMount() {
-		const data = {
-			meals:[
-				{
-					strMeal: "Egyptian Fatteh",
-					strCategory: "Beef",
-					strArea: "Egyptian"
-				}
-			]
-		}
-		// Cause update to Store
-		this.props.getRandomMeal(data);
-		// This will then cause the component to update
+		fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+			.then(response => response.json())
+			.then(data => this.props.getRandomMeal(data));
 	}
 	componentDidUpdate(prevProps,prevState) {
 		if (prevState.meal.strMeal.localeCompare("") === 0) {
@@ -52,6 +43,11 @@ class RandomMeal extends React.Component {
 				<label htmlFor="area">Area: </label>
 				<span name="area">
 					{this.state.meal["strArea"]}
+				</span><br />
+
+				<label htmlFor="id">ID: </label>
+				<span name="id">
+					{this.state.meal["idMeal"]}
 				</span><br />
 			</React.Fragment>
 		);

@@ -15,17 +15,9 @@ class SearchMeal extends React.Component {
 		}
 	}
 	componentDidMount() {
-		const data = {
-			meals: [
-				{
-					strMeal: "Spicy Arrabiata Penne",
-					strCategory: "Vegetarian",
-					strArea: "Italian"
-				}
-			]
-		}
-
-		this.props.filterName(data);
+		fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata")
+			.then(response => response.json())
+			.then(data => this.props.filterName(data));
 	}
 	componentDidUpdate(prevProps,prevState) {
 		if (prevState.meal.strMeal.localeCompare("") === 0) {
@@ -46,12 +38,12 @@ class SearchMeal extends React.Component {
 
 				<label htmlFor="Category">Category: </label>
 				<span name="Category">
-					{this.state.meal["strMeal"]}
+					{this.state.meal["strCategory"]}
 				</span><br />
 
 				<label htmlFor="Area">Area: </label>
 				<span name="Area">
-					{this.state.meal["strMeal"]}
+					{this.state.meal["strArea"]}
 				</span><br />
 			</React.Fragment>
 		);
