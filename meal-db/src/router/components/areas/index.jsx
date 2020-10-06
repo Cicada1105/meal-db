@@ -11,27 +11,11 @@ class Areas extends React.Component {
 		}
 	}
 	componentDidMount() {
-		const data = {
-		    meals: [
-			    {
-			      strArea: "American"
-			    },
-			    {
-			      strArea: "British"
-			    },
-			    {
-			      strArea: "Canadian"
-			    },
-			    {
-			      strArea: "Chinese"
-			    },
-			    {
-			      strArea: "Dutch"
-			    }
-		    ]
-		}
-
-		this.props.getAreas(data);
+		fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
+			.then(response => response.json())
+			.then(data => {
+				this.props.getAreas(data);
+			});
 	}
 	componentDidUpdate(prevProps,prevState) {
 		console.log(prevState);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ImageCard {
+function ImageCard() {
 	return (
 		<div>
 			Image Card
