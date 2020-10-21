@@ -1,10 +1,22 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+
+import styles from './static_style.module.css';
 
 function DescriptionCard(props) {
+	let history = useHistory();
+
+	const navigateTo = () => {
+		history.push(props.imageLink);
+	}
+
 	return(
-		<div style={ props.style }>
-			{props.descr}
-		</div>
+		<section className={styles.descrCard}>
+			<h2>{props.header}</h2>
+			<img src={props.imageURL} alt={props.imageAlt} onClick={() => navigateTo()} />
+			<div className={styles.descrCardBg}></div>
+			<p>{props.descr}</p> 
+		</section>
 	)
 }
 

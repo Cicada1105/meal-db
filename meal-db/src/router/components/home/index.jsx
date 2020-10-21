@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // Data
 import { linkData } from './data.jsx';
@@ -6,9 +6,6 @@ import { linkData } from './data.jsx';
 import { Row } from './row.jsx';
 
 function Home() {
-	useEffect(() => {
-		console.log("useEffect in Home functional component");
-	});
 	return(
 		<React.Fragment>
 			<h2>MealDB</h2>

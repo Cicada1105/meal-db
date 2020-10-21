@@ -1,7 +1,6 @@
 import React from 'react';
 // Components
 import { Button } from '../../../static_components/button.jsx';
-import { DescriptionCard } from '../../../static_components/descriptionCard.jsx';
 // Styling
 import styles from './style.module.css';
 // Images
@@ -21,7 +20,7 @@ function Row(props) {
 			</div>
 			<div className={ styles.cardCont }>
 				<img src={ props.imgNum === 1 ? cardBg1 : cardBg2 } className={ props.imgNum === 1 ? styles.cardBg1 : styles.cardBg2 } alt="*Description Card*" />
-				<DescriptionCard style={descriptionStyle} descr={props.descr} />
+				<div style={descriptionStyle}>{props.descr}</div>
 			</div>
 		</div>
 	)

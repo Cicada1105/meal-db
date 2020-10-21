@@ -25,7 +25,7 @@ export const getCategories = (categoriesDBResponse) => {
 	return {
 		type: GET_CATEGORIES,
 		payload: {
-			categories: categoriesDBResponse["meals"]
+			categories: categoriesDBResponse["categories"]
 		}
 	}
 }

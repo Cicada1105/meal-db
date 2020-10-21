@@ -47,3 +47,43 @@
 	margin-top:1rem;
 	z-index: 2;
 }
+.descrCard {
+	position:relative;
+	margin:41px;
+	color:white;
+	width:400px;
+	height:500px;
+}
+.descrCard > h2 {
+	position:relative;
+	display: inline-block;
+	margin:2rem auto;
+	text-align: center;
+	width:80%;
+	z-index: 2;
+}
+.descrCard > img {
+	position:relative;
+	width:30%;
+	z-index: 2;
+}
+.descrCard > img:hover {
+	cursor:pointer;
+}
+.descrCard > .descrCardBg {
+	background-color:white;
+	position:absolute;
+	opacity:0.5;
+	width:400px;
+	height:500px;
+	top:0px;
+	z-index: 1;
+}
+.descrCard > p {
+	position:relative;
+	width:80%;
+	height:40%;
+	overflow-y:scroll;
+	margin:5rem auto;
+	z-index: 2;
+}
