@@ -35,8 +35,8 @@ class Categories extends React.Component {
 				{
 					this.state.categories.map(category => 
 						<DescriptionCard key={category["idCategory"]} header={category["strCategory"]} 
-							imageURL={category["strCategoryThumb"]} imageAlt={category["strCategory"]} 
-							imageLink={`/Categories/${category['strCategory']}`} descr={category["strCategoryDescription"]}/>
+							imageURL={category["strCategoryThumb"]} imageLink={`/Categories/${category['strCategory']}`}
+							descr={category["strCategoryDescription"]}/>
 					)
 				}
 				</div>

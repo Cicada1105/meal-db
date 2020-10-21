@@ -3,6 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getIngredients } from '../../../app_state/action_creators/getActions.jsx';
 
+import { DescriptionCard } from '../../../static_components/descriptionCard.jsx';
+import styles from './index.module.css';
+
 class Ingredients extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,21 +32,15 @@ class Ingredients extends React.Component {
 		return (
 			<React.Fragment>
 				<h2>MealDB Ingredients</h2>
+				<div className={styles.flexWrap}>
 				{
 					this.state.ingredients.map(meal => 
-						<div key={meal.idIngredient}>
-							<label htmlFor="meal">Name: </label>
-							<span name="meal">
-								{ meal.strIngredient }
-							</span><br />
-
-							<label htmlFor="description">Description: </label>
-							<span name="description">
-								{ meal.strDescription }
-							</span><br /><br />
-						</div>
+						<DescriptionCard key={meal.idIngredient} header={meal.strIngredient}
+						 imageURL={`https://www.themealdb.com/images/ingredients/${meal.strIngredient}-Small.png`}
+						 imageLink={`Ingredients/${meal.strIngredient}`} descr={meal.strDescription} />
 					)
 				}
+				</div>
 			</React.Fragment>
 		);
 	}

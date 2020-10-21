@@ -38,7 +38,7 @@ class Area extends React.Component {
 				{
 					this.state.meals.map(meal =>
 						<ImageCard key={meal.idMeal} text={meal.strMeal} imageURL={meal.strMealThumb} 
-							imgAlt={meal.strMeal} recipeLink={`/Meals/${meal.idMeal}`} />
+							recipeLink={`/Meals/${meal.idMeal}`} />
 					)
 				}
 				</div>

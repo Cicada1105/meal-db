@@ -3,6 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { filterIngredient } from '../../../../app_state/action_creators/filterActions.jsx';
 
+import { ImageCard } from '../../../../static_components/imageCard.jsx';
+import styles from './index.module.css';
+
 class Ingredient extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,27 +32,14 @@ class Ingredient extends React.Component {
 		return(
 			<React.Fragment>
 				<h2>Filter by IngredientID</h2>
-
+				<div className={styles.flexWrap}>
 				{ 
-					this.state.meals.map((meal,id) => 
-						<div key={id}>
-							<label htmlFor="meal">Meal: </label>
-							<span name="meal">
-								{ meal["strMeal"] }
-							</span><br />
-
-							<label htmlFor="meal">Thumbnail: </label>
-							<span name="meal">
-								{ meal["strMealThumb"] }
-							</span><br />
-
-							<label htmlFor="meal">ID: </label>
-							<span name="meal">
-								{ meal["idMeal"] }
-							</span><br /><br />
-						</div>
+					this.state.meals.map(meal => 
+						<ImageCard key={meal.idMeal} text={meal.strMeal} imageURL={meal.strMealThumb} 
+							recipeLink={`/Meals/${meal.idMeal}`} />
 					)
 				}
+				</div>
 			</React.Fragment>
 		)
 	}

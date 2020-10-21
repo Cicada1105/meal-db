@@ -1,0 +1,10 @@
+.flexWrap {
+	display:flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin:auto;
+	width:80vw;
+}
+.flexWrap > section {
+	margin:3rem;
+}

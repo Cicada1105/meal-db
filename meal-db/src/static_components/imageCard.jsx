@@ -7,7 +7,7 @@ function ImageCard(props) {
 	return (
 		<section className={styles.imgCard}>
 			<h3>{props.text}</h3>
-			<img src={props.imageURL} alt={props.imageAlt} />
+			<img src={props.imageURL} alt={props.text} />
 			<div className={styles.imgCardBg}></div>
 			<Button text="View Recipe" path={props.recipeLink} />
 		</section>	
