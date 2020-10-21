@@ -1,7 +1,7 @@
 .flexWrap {
 	display:flex;
 	justify-content: space-between;
-	flex-wrap: wrap;
+	flex-wrap:wrap;
 	margin:auto;
 	width:80vw;
 }

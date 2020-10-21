@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { filterArea } from '../../../../app_state/action_creators/filterActions.jsx';
 
 import { ImageCard } from '../../../../static_components/imageCard.jsx';
-import './index.css';
+import styles from './index.module.css';
 
 class Area extends React.Component {
 	constructor(props) {
@@ -34,7 +34,7 @@ class Area extends React.Component {
 		return (
 			<React.Fragment>
 				<h2><ins>{ this.state.areaID }</ins></h2>
-				<div id="flexWrap">
+				<div className={styles.flexWrap}>
 				{
 					this.state.meals.map(meal =>
 						<ImageCard key={meal.idMeal} text={meal.strMeal} imageURL={meal.strMealThumb} 

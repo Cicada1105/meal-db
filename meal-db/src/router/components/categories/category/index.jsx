@@ -3,6 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { filterCategory } from '../../../../app_state/action_creators/filterActions.jsx';
 
+import { ImageCard } from '../../../../static_components/imageCard.jsx';
+import styles from './index.module.css';
+
 class Category extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,20 +32,13 @@ class Category extends React.Component {
 		return(
 			<React.Fragment>
 				<h2><ins>{ this.state.categoryID }</ins></h2><br />
+				<div className={styles.flexWrap}>
 				{
 					this.state.meals.map(meal =>
-						<section key={meal.idMeal}>
-							<label htmlFor="meal">Meal: </label>
-							<span name="meal">{ meal["strMeal"] }</span><br />
-
-							<label htmlFor="thumbnail">Meal: </label>
-							<span name="thumbnail">{ meal["strMealThumb"] }</span><br />
-
-							<label htmlFor="id">Meal: </label>
-							<span name="id">{ meal["idMeal"] }</span><br /><br />
-						</section>
+						<ImageCard text={meal["strMeal"]} imageURL={meal["strMealThumb"]} recipeLink={`/Meals/${meal["idMeal"]}`} />
 					)
 				}
+				</div>
 			</React.Fragment>
 		);
 	}
