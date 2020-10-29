@@ -3,15 +3,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { filterID } from '../../../app_state/action_creators/filterActions.jsx';
 
+import { RecipeCard } from '../../../static_components/recipeCard.jsx';
+
 class Meal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			mealID: props.match.params.mealID,
-			meal: {
+			meal: { 
 				strMeal: "",
 				strCategory: "",
-				strArea: ""
+				strArea: "",
+				strInstructions: "",
+				strMealThumb: "",
+				strTags: "",
+				strYoutube: "",
+				strIngredients: [],
+				strSource: ""
 			}
 		}
 	}
@@ -22,35 +30,42 @@ class Meal extends React.Component {
 	}
 	componentDidUpdate(prevProps,prevState) {
 		if (prevState.meal["strMeal"].localeCompare("") === 0) {
+			let i = 1;
+			let formattedStr = "";
+			let isEmptyStr;
+			let ingredients = [];
+			do {
+				isEmptyStr = (this.props.meal[`strMeasure${i}`] === "") || (this.props.meal[`strMeasure${i}`] === " ");
+				formattedStr = this.props.meal[`strIngredient${i}`] + (isEmptyStr ? "" : ` - ${this.props.meal[`strMeasure${i}`]}`);
+				ingredients.push(formattedStr);
+				i++;
+			} while((this.props.meal[`strIngredient${i}`] !== "") && (this.props.meal[`strIngredient${i}`] !== null) && (i <= 20));
+
 			this.setState(() => ({
-				meal: this.props.meal
+				meal: {
+					strMeal: this.props.meal["strMeal"],
+					strCategory: this.props.meal["strCategory"],
+					strArea: this.props.meal["strArea"],
+					strInstructions: this.props.meal["strInstructions"],
+					strMealThumb: this.props.meal["strMealThumb"],
+					strTags: this.props.meal["strTags"],
+					strYoutube: this.props.meal["strYoutube"],
+					strIngredients: [...ingredients],
+					strSource: this.props.meal["strSource"]
+				}
 			}));
 		}
 	}
 	render() {
 		return (
 			<React.Fragment>
-				<h2>Select Meal by ID</h2>
-
-				<label htmlFor="meal">ID: </label>
-				<span name="meal">
-					{ this.state.mealID}
-				</span><br />
-
-				<label htmlFor="meal">Name: </label>
-				<span name="meal">
-					{ this.state.meal["strMeal"]}
-				</span><br />
-
-				<label htmlFor="">Category: </label>
-				<span name="">
-					{ this.state.meal["strCategory"]}
-				</span><br />
-
-				<label htmlFor="">Area: </label>
-				<span name="">
-					{ this.state.meal["strArea"]}
-				</span><br />
+			{
+				this.state.meal["strMeal"] &&
+				<RecipeCard meal={this.state.meal["strMeal"]} category={this.state.meal["strCategory"]} source={this.state.meal["strSource"]}
+							area={this.state.meal["strArea"]} img={this.state.meal["strMealThumb"]} 
+							ingredients={this.state.meal["strIngredients"]} instructions={this.state.meal["strInstructions"]} 
+							tags={this.state.meal["strTags"]} />
+			}
 			</React.Fragment>
 		)
 	}

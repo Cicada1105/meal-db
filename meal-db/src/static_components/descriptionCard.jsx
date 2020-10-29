@@ -14,7 +14,7 @@ function DescriptionCard(props) {
 		<section className={styles.descrCard}>
 			<h2>{props.header}</h2>
 			<img src={props.imageURL} alt={props.header} onClick={() => navigateTo()} />
-			<div className={styles.descrCardBg}></div>
+			<div className={styles.cardBg}></div>
 			<p>{props.descr}</p> 
 		</section>
 	)

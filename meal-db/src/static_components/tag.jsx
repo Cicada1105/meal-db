@@ -10,7 +10,7 @@ function Tag(props) {
 	}
 
 	return (
-		<div className={ style.tag } onClick={() => navigate(props.path)}>
+		<div className={ style.tag } onClick={() => props.path && navigate(props.path)}>
 			{ props.children }
 		</div>
 	);
