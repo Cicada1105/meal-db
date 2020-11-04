@@ -10,8 +10,8 @@
 .tag {
 	background: linear-gradient(25deg, rgb(46,113,166), rgb(153,213,249));
 	border-radius:5px;
-	padding: 15px 20px 14px 18px;
-	width:150px;
+	padding: 8px 10px 9px 10px;
+	width:100px;
 }
 .tag:hover {
 	cursor: pointer;
@@ -21,7 +21,6 @@
 	text-decoration: none;
 	color:white;
 	font-weight:bold;
-	margin:0px;
 }
 .imgCard {
 	position:relative;
@@ -42,9 +41,13 @@
 	z-index: 2;
 }
 .imgCard > div:last-of-type {
-	position:relative;
+	position:absolute;
+	left:50%;
+	bottom:0%;
+	transform:translateX(-50%);
 	margin:auto;
-	margin-top:1rem;
+	margin-bottom:1.5rem;
+	padding:15px 20px 14px 18px;
 	z-index: 2;
 }
 .descrCard {
@@ -107,7 +110,7 @@ main.recipeCard {
 	position:relative;
 	width:55vw;
 	margin:auto;
-	margin-bottom:2.5rem;
+	/*margin-bottom:2.5rem;*/
 	z-index: 2;
 }
 .recipeCard > figure {
@@ -155,6 +158,12 @@ figure > figcaption {
 	flex-wrap:wrap;
 	justify-content: space-around;
 	align-content: space-between;
+	overflow:scroll;
+}
+.recipeCard > article > .scrollBlur {
+	width:inherit;
+	height:20px;
+	box-shadow: 0px -14px 11px -6px rgba(255,255,255,0.45);
 }
 .ingredients > p {
 	margin:1rem 0px;
@@ -162,11 +171,13 @@ figure > figcaption {
 }
 .instructions {
 	margin:auto;
+	margin-bottom:30px;
 	width:90%;
 }
 .instructions > p {
 	text-align:left;
-	margin:0.75rem;
+	padding:0.75rem;
+	margin:0px;
 }
 .instructions > p:first-of-type {
 	margin-top:0;
@@ -175,9 +186,10 @@ figure > figcaption {
 	content:"- ";
 }
 .recipeCard > footer {
-	position:relative;
+	position:absolute;
 	width:100%;
 	left:50%;
+	bottom:20px;
 	transform:translateX(-50%);
 }
 footer > div {

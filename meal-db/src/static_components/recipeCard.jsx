@@ -10,6 +10,9 @@ const RecipeCard = (props) => {
 
 	const headerRef = useRef(null);
 	const asideRef = useRef(null);
+	const mainRef = useRef(null);
+	const ingredientsRef = useRef(null);
+	const scrollBlurRef = useRef(null);
 	const instructionsRef = useRef(null);
 	const footerRef = useRef(null);
 	const bgCardRef = useRef(null);
@@ -25,16 +28,18 @@ const RecipeCard = (props) => {
 		const footerHeight = footerRef.current.offsetHeight;
 
 		const asideBottomMargin = parseInt(window.getComputedStyle(asideRef.current).marginBottom);
+		const screenBottomMargin = parseInt(window.getComputedStyle(bgCardRef.current).marginBottom);
 
 		// Min height = 100vh - height of area above recipe card
-		const minHeight = window.innerHeight - (headerHeight + asideHeight + asideBottomMargin);
+		const minHeight = window.innerHeight - (headerHeight + asideHeight + asideBottomMargin + screenBottomMargin);
 		// content = instructions height + footer height + footer bottom offset (30px)
 		const contentHeight = instructionsHeight + footerHeight + 30;
 
 		// Set background card to height of max val between minHeight and contentHeight
-		console.log(`minHeight ${minHeight}`);
-		console.log(`contentHeight ${contentHeight}`);
 		bgCardRef.current.style.height = `${Math.max(minHeight,contentHeight)}px`;
+		mainRef.current.style.height = `${Math.max(minHeight,contentHeight)}px`;
+		// If ingredients overflows, display scroll blur, else don't
+		scrollBlurRef.current.style.display = ingredientsRef.current.scrollHeight > ingredientsRef.current.offsetHeight ? "block" : "none";
 	},[headerRef,asideRef,instructionsRef,footerRef]);
 
 	return(
@@ -48,7 +53,7 @@ const RecipeCard = (props) => {
 					Area: <span className={styles.link} onClick={() => navigateTo(`/Areas/${props.area}`)}>{ props.area }</span>
 				</span>
 			</aside>
-			<main className={styles.recipeCard}>
+			<main ref={mainRef} className={styles.recipeCard}>
 				<figure onClick={() => window.open(`${props.source}`,"_blank")}>
 					<img src={props.img} alt={props.meal} />
 					<figcaption>- View Source -</figcaption>
@@ -56,11 +61,12 @@ const RecipeCard = (props) => {
 
 				<article>
 					<h3>Ingredients</h3>
-					<div className={styles.ingredients}>
+					<div ref={ingredientsRef} className={styles.ingredients}>
 					{
 						props.ingredients.map((ingredient, i) => <p key={i}>{ ingredient }</p> )
 					}
 					</div>
+					<div ref={scrollBlurRef} className={styles.scrollBlur}></div>
 				</article>
 				<div ref={instructionsRef} className={styles.instructions}>
 				{

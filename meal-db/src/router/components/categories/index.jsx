@@ -31,7 +31,7 @@ class Categories extends React.Component {
 		return (
 			<React.Fragment>
 				<h2><ins>Categories</ins></h2><br />
-				<div class={styles.flexWrap}>
+				<div className={styles.flexWrap}>
 				{
 					this.state.categories.map(category => 
 						<DescriptionCard key={category["idCategory"]} header={category["strCategory"]} 

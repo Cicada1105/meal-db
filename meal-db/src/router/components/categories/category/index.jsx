@@ -34,8 +34,8 @@ class Category extends React.Component {
 				<h2><ins>{ this.state.categoryID }</ins></h2><br />
 				<div className={styles.flexWrap}>
 				{
-					this.state.meals.map(meal =>
-						<ImageCard text={meal["strMeal"]} imageURL={meal["strMealThumb"]} recipeLink={`/Meals/${meal["idMeal"]}`} />
+					this.state.meals.map((meal,i) =>
+						<ImageCard key={i} text={meal["strMeal"]} imageURL={meal["strMealThumb"]} recipeLink={`/Meals/${meal["idMeal"]}`} />
 					)
 				}
 				</div>

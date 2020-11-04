@@ -31,7 +31,7 @@ class Ingredients extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<h2>MealDB Ingredients</h2>
+				<h2><ins>Ingredients</ins></h2>
 				<div className={styles.flexWrap}>
 				{
 					this.state.ingredients.map(meal => 

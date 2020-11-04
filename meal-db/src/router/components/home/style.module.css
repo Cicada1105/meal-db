@@ -35,6 +35,8 @@ div.btnCont {
 div.btnCont > div {
 	position:absolute;
 	top:50%;
+	width:131px;
+	padding:15px 20px 14px 18px;
 	transform: translateY(-50%);
 }
 div.cardCont {

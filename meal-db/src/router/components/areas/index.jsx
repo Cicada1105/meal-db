@@ -21,7 +21,6 @@ class Areas extends React.Component {
 			});
 	}
 	componentDidUpdate(prevProps,prevState) {
-		console.log(prevState);
 		if (prevState["areas"].length === 0) {
 			this.setState(function() {
 				return {
@@ -33,7 +32,7 @@ class Areas extends React.Component {
 	render() {
 		return(
 			<React.Fragment>
-				<h2><ins>MealDB Areas</ins></h2>
+				<h2><ins>Areas</ins></h2>
 				<div className={styles.bg}></div>
 				<div className={styles.areasSection}>
 				{
@@ -48,7 +47,6 @@ class Areas extends React.Component {
 }
 
 const mapStateToProps = state => {
-	console.log(state.mealsReducer);
 	return {
 		meals: state.mealsReducer
 	}
