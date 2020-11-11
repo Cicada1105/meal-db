@@ -158,7 +158,10 @@ figure > figcaption {
 	flex-wrap:wrap;
 	justify-content: space-around;
 	align-content: space-between;
-	overflow:scroll;
+	overflow-y:scroll;
+}
+.recipeCard > article > .incredients::-webkit-scrollbar {
+	display:none;
 }
 .recipeCard > article > .scrollBlur {
 	width:inherit;

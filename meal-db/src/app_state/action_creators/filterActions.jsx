@@ -8,7 +8,7 @@ export const filterName = (response) => {
 	return {
 		type: FILTER_BY_NAME,
 		payload: {
-			mealRecipe: response.meals[0]
+			meals: response.meals
 		}
 	}
 }

@@ -3,55 +3,74 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { filterName } from '../../../../app_state/action_creators/filterActions.jsx';
 
+import { PreviewCard } from './previewCard.jsx';
+
 class SearchMeal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			meal: {
-				strMeal: "",
-				strCategory: "",
-				strArea: ""
+			meals: [],
+			filteredMeals: []
+		}
+		this.inputRef = React.createRef();
+	}
+	handleClick = function(event) {
+		let keyCode = event.keyCode;
+		// a == 65 && z == 90
+		this.inputRef.current.removeEventListener("onKeyUp",(e) => this.handleClick(e));
+		if ((keyCode >= 65) && (keyCode <= 90)) {
+			let userData = event.target.value.toLowerCase();
+			if (userData.length === 1) {
+				fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${userData}`)
+					.then(response => response.json())
+					.then(data => this.props.filterName(data));
+			}
+			else {
+				this.setState(() => ({
+					filteredMeals: this.state.filteredMeals.filter(meal => meal.strMeal.toLowerCase().includes(userData))
+				}));
+			}	
+		}
+		else if (keyCode === 8) {
+			let userData = event.target.value.toLowerCase();
+			if ((userData.length === 0) && (this.state.filteredMeals.length > 0)) {
+				this.setState(() => ({
+					meals: [],
+					filteredMeals: []
+				}));
+			}
+			else if (userData.length > 0) {
+				this.setState(() => ({
+					filteredMeals: this.state.meals.filter(meal => meal.strMeal.toLowerCase().includes(userData))
+				}));
 			}
 		}
-	}
-	componentDidMount() {
-		fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata")
-			.then(response => response.json())
-			.then(data => this.props.filterName(data));
+		this.inputRef.current.addEventListener("onKeyUp",(e) => this.handleClick(e));
 	}
 	componentDidUpdate(prevProps,prevState) {
-		if (prevState.meal.strMeal.localeCompare("") === 0) {
+		if ((prevState.meals) && (prevState.meals.length === 0)) {
 			this.setState(() => ({
-				meal: this.props.meal
+				meals: this.props.meals,
+				filteredMeals: this.props.meals
 			}));
 		}
 	}
 	render() {
 		return(
 			<React.Fragment>
-				<h2>Search Meal</h2>
-
-				<label htmlFor="meal">Meal: </label>
-				<span name="meal">
-					{this.state.meal["strMeal"]}
-				</span><br />
-
-				<label htmlFor="Category">Category: </label>
-				<span name="Category">
-					{this.state.meal["strCategory"]}
-				</span><br />
-
-				<label htmlFor="Area">Area: </label>
-				<span name="Area">
-					{this.state.meal["strArea"]}
-				</span><br />
+				<h2><ins>Search Meal</ins></h2>
+				<input ref={this.inputRef} type="text" onKeyUp={(e) => this.handleClick(e)} />
+				{
+					this.state.filteredMeals !== undefined && this.state.filteredMeals.length !== 0 &&
+					this.state.filteredMeals.map((meal, i) => <PreviewCard key={i} {...meal} /> )
+				}
 			</React.Fragment>
 		);
 	}
 }
 
 const mapStateToProps = state => {
-	return {meal: state.mealsReducer[0]};
+	return {meals: state.mealsReducer[0]};
 }
 export default connect(
 	mapStateToProps,
