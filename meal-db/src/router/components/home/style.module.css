@@ -3,11 +3,13 @@ h2 {
 	color:white;
 }
 .row {
-	background-color:cyan;
 	position:relative;
-	width:60rem;
+	width:50rem;
 	height:6rem;
-	margin:8rem auto 1rem auto;
+	padding-bottom:2rem;
+	margin: auto;
+	margin-top:8rem;
+	border-bottom: 2px solid rgb(46,113,166);
 }
 .row > div {
 	position:relative;
