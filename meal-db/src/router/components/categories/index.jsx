@@ -10,6 +10,7 @@ class Categories extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			isLoading: true,
 			categories: []
 		}
 	}
@@ -22,6 +23,7 @@ class Categories extends React.Component {
 		if (prevState["categories"].length === 0) {
 			this.setState(function() {
 				return {
+					isLoading: false,
 					categories: [...this.props["categories"]]
 				}
 			})
@@ -37,11 +39,18 @@ class Categories extends React.Component {
 				</header>
 				<div className={styles.flexWrap}>
 				{
-					this.state.categories.map(category => 
-						<DescriptionCard key={category["idCategory"]} header={category["strCategory"]} 
-							imageURL={category["strCategoryThumb"]} imageLink={`/Categories/${category['strCategory']}`}
-							descr={category["strCategoryDescription"]}/>
-					)
+					this.state.isLoading ?
+						<>
+							<DescriptionCard header="Loading..." />
+							<DescriptionCard header="Loading..." />
+							<DescriptionCard header="Loading..." />
+							<DescriptionCard header="Loading..." />
+						</> :
+						this.state.categories.map(category => 
+							<DescriptionCard key={category["idCategory"]} header={category["strCategory"]} 
+								imageURL={category["strCategoryThumb"]} imageLink={`/Categories/${category['strCategory']}`}
+								descr={category["strCategoryDescription"]}/>
+						)
 				}
 				</div>
 			</React.Fragment>

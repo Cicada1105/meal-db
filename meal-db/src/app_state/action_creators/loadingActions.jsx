@@ -5,6 +5,12 @@
 
 import { LOADING, NOT_LOADING } from '../actions.jsx';
 
+export const isLoading = (loadingState) => {
+	return {
+		type: loadingState ? LOADING : NOT_LOADING
+	}
+}
+/*
 export const isLoading = () => {
 	return {
 		type: LOADING
@@ -15,3 +21,4 @@ export const isPending = () => {
 		type: NOT_LOADING
 	}
 }
+*/

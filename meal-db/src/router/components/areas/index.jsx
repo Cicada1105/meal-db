@@ -9,8 +9,9 @@ import styles from './index.module.css';
 class Areas extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log(props);
+
 		this.state = {
+			isLoading: true,
 			areas: []
 		}
 	}
@@ -25,6 +26,7 @@ class Areas extends React.Component {
 		if (prevState["areas"].length === 0) {
 			this.setState(function() {
 				return {
+					isLoading: false,
 					areas: [...this.props.meals]
 				}
 			})
@@ -41,9 +43,11 @@ class Areas extends React.Component {
 				<div className={styles.bg}></div>
 				<div className={styles.areasSection}>
 				{
-					this.state.areas.map((area, i) =>
-						<Button key={i} text={area["strArea"]} path={`/Areas/${area['strArea']}`} />
-					)
+					this.state.isLoading ?
+						<h3>Loading...</h3> :
+						this.state.areas.map((area, i) =>
+							<Button key={i} text={area["strArea"]} path={`/Areas/${area['strArea']}`} />
+						)
 				}
 				</div>
 			</React.Fragment>
@@ -53,6 +57,7 @@ class Areas extends React.Component {
 
 const mapStateToProps = state => {
 	return {
+		isLoading: state["loadingReducer"].isLoading,
 		meals: state.mealsReducer
 	}
 }

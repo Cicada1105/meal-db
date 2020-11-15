@@ -10,6 +10,7 @@ class Ingredients extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			isLoading: true,
 			ingredients: []
 		}
 	}
@@ -22,6 +23,7 @@ class Ingredients extends React.Component {
 		if (prevState["ingredients"].length === 0) {
 			this.setState(function() {
 				return {
+					isLoading: false,
 					ingredients: [...this.props.meals]
 				}
 			})
@@ -37,11 +39,18 @@ class Ingredients extends React.Component {
 				</header>
 				<div className={styles.flexWrap}>
 				{
-					this.state.ingredients.map(meal => 
-						<DescriptionCard key={meal.idIngredient} header={meal.strIngredient}
-						 imageURL={`https://www.themealdb.com/images/ingredients/${meal.strIngredient}-Small.png`}
-						 imageLink={`Ingredients/${meal.strIngredient}`} descr={meal.strDescription} />
-					)
+					this.state.isLoading ?
+						<>
+							<DescriptionCard header="Loading..." />
+							<DescriptionCard header="Loading..." />
+							<DescriptionCard header="Loading..." />
+							<DescriptionCard header="Loading..." />
+						</> : 
+						this.state.ingredients.map(meal => 
+							<DescriptionCard key={meal.idIngredient} header={meal.strIngredient}
+							 imageURL={`https://www.themealdb.com/images/ingredients/${meal.strIngredient}-Small.png`}
+							 imageLink={`Ingredients/${meal.strIngredient}`} descr={meal.strDescription} />
+						)
 				}
 				</div>
 			</React.Fragment>

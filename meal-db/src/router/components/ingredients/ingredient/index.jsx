@@ -10,6 +10,7 @@ class Ingredient extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			isLoading: true,
 			ingredientID: props.match.params.ingredientID,
 			meals: []
 		}
@@ -23,6 +24,7 @@ class Ingredient extends React.Component {
 		if (prevState.meals.length === 0) {
 			this.setState(function() {
 				return {
+					isLoading: false,
 					meals: [...this.props.meals]
 				}
 			})
@@ -37,11 +39,18 @@ class Ingredient extends React.Component {
 					<Button text="Home" path="/Home" />
 				</header>
 				<div className={styles.flexWrap}>
-				{ 
-					this.state.meals.map(meal => 
-						<ImageCard key={meal.idMeal} text={meal.strMeal} imageURL={meal.strMealThumb} 
-							recipeLink={`/Meals/${meal.idMeal}`} />
-					)
+				{
+					this.state.isLoading ?
+						<>
+							<ImageCard text="Loading..." />
+							<ImageCard text="Loading..." />
+							<ImageCard text="Loading..." />
+							<ImageCard text="Loading..." />
+						</> :
+						this.state.meals.map(meal => 
+							<ImageCard key={meal.idMeal} text={meal.strMeal} imageURL={meal.strMealThumb} 
+								recipeLink={`/Meals/${meal.idMeal}`} />
+						)
 				}
 				</div>
 			</React.Fragment>
