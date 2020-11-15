@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getRandomMeal } from '../../../../app_state/action_creators/getActions.jsx';
 
-import { RecipeCard } from '../../../../static_components/recipeCard.jsx';
+import { RecipeCard } from '../../../../static_components';
 
 class RandomMeal extends React.Component {
 	constructor(props) {

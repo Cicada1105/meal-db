@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { filterID } from '../../../app_state/action_creators/filterActions.jsx';
 
-import { RecipeCard } from '../../../static_components/recipeCard.jsx';
+import { RecipeCard } from '../../../static_components';
 
 class Meal extends React.Component {
 	constructor(props) {

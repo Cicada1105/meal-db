@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import { Button } from '../../../static_components/button.jsx';
+import { Button } from '../../../static_components';
 // Styling
 import styles from './style.module.css';
 // Images

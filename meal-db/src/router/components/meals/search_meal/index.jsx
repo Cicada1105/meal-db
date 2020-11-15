@@ -6,8 +6,7 @@ import { filterName } from '../../../../app_state/action_creators/filterActions.
 import styles from './index.module.css';
 
 import { PreviewCard } from './previewCard.jsx';
-import { Button } from '../../../../static_components/button.jsx';
-import { Tag } from '../../../../static_components/tag.jsx';
+import { Button, Tag } from '../../../../static_components';
 
 class SearchMeal extends React.Component {
 	constructor(props) {

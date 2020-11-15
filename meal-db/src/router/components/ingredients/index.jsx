@@ -3,9 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getIngredients } from '../../../app_state/action_creators/getActions.jsx';
 
-import { DescriptionCard } from '../../../static_components/descriptionCard.jsx';
-import { Button } from '../../../static_components/button.jsx';
-import { Tag } from '../../../static_components/tag.jsx';
+import { Button, DescriptionCard, Tag } from '../../../static_components';
 import styles from './index.module.css';
 
 class Ingredients extends React.Component {
