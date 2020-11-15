@@ -9,6 +9,8 @@
 }
 .tag {
 	background: linear-gradient(25deg, rgb(46,113,166), rgb(153,213,249));
+	color:white;
+	font-weight: bold;
 	border-radius:5px;
 	padding: 8px 10px 9px 10px;
 	width:100px;
@@ -83,34 +85,50 @@
 .recipeSection {
 	color:white;
 }
-.recipeSection > header {
+header.recipeHeader {
+	position: relative;
 	margin:auto;
-	font-size:2rem;
-	width:65vw;
+	height:6rem;
+	width:55vw;
 }
-.recipeSection > aside {
+header.recipeHeader > h2 {
+	width: calc(55vw - 400px);
+	margin:auto;
+}
+header.recipeHeader > div {
+	position:absolute;
+	top:10px;
+}
+header.recipeHeader > div:first-of-type {
+	left:0;
+}
+header.recipeHeader > div:last-of-type {
+	right:0;
+}
+header.recipeHeader > span {
+	position:absolute;
+	bottom:10px;
+}
+header.recipeHeader > span.category {
+	left:150px;
+}
+header.recipeHeader > span.area {
+	right:150px;
+}
+/*.recipeSection > aside {
 	width:55vw;
 	height:1.47rem;
 	margin:auto;
 	margin-bottom: 0.75rem;
-}
+}*/
 .link:hover {
-	border-bottom:2px solid white;
+	border-bottom:1.75px solid white;
 	cursor:pointer;
-}
-.recipeSection aside > span.category {
-	margin-left:40px;
-	float:left;
-}
-.recipeSection > aside > span.area {
-	margin-right:40px;
-	float:right;
 }
 main.recipeCard {
 	position:relative;
 	width:55vw;
 	margin:auto;
-	/*margin-bottom:2.5rem;*/
 	z-index: 2;
 }
 .recipeCard > figure {
@@ -205,10 +223,8 @@ footer > div {
 	display:block;
 	opacity:0.25;
 	width:55vw;
-	height:50rem;
 	transform:translateX(-50%);
-	margin-bottom:2.5rem;
 	left:50%;
-	top:4.6rem;
+	top:6rem;
 	z-index: 1;
 }

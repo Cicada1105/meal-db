@@ -8,6 +8,18 @@
 	z-index: 1;
 	left:25vw;
 }
+header.areasHeader {
+	margin:auto;
+	width:50vw;
+}
+header.areasHeader > div {
+	display:inline-block;
+}
+header.areasHeader > h2 {
+	display:inline-block;
+	margin-left:12.95rem;
+	margin-right:12.95rem;
+}
 .areasSection {
 	display:flex;
 	flex-wrap: wrap;

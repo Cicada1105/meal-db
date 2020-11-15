@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getCategories } from '../../../app_state/action_creators/getActions.jsx';
 
 import { DescriptionCard } from '../../../static_components/descriptionCard.jsx';
+import { Button } from '../../../static_components/button.jsx';
+import { Tag } from '../../../static_components/tag.jsx';
 import styles from './index.module.css';
 
 class Categories extends React.Component {
@@ -30,7 +32,11 @@ class Categories extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<h2><ins>Categories</ins></h2><br />
+				<header className={styles.categoriesHeader}>
+					<Tag path={-1}>Go Back</Tag>
+					<h2><ins>Categories</ins></h2>
+					<Button text="Home" path="/Home" />
+				</header>
 				<div className={styles.flexWrap}>
 				{
 					this.state.categories.map(category => 

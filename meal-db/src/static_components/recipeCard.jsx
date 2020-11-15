@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { Button } from './button.jsx';
 import { Tag } from './tag.jsx';
 
 import styles from './static_style.module.css';
@@ -9,7 +10,6 @@ const RecipeCard = (props) => {
 	const history = useHistory();
 
 	const headerRef = useRef(null);
-	const asideRef = useRef(null);
 	const mainRef = useRef(null);
 	const ingredientsRef = useRef(null);
 	const scrollBlurRef = useRef(null);
@@ -23,15 +23,13 @@ const RecipeCard = (props) => {
 
 	useEffect(() => {
 		const headerHeight = headerRef.current.offsetHeight;
-		const asideHeight = asideRef.current.offsetHeight;
 		const instructionsHeight = instructionsRef.current.offsetHeight;
 		const footerHeight = footerRef.current.offsetHeight;
 
-		const asideBottomMargin = parseInt(window.getComputedStyle(asideRef.current).marginBottom);
 		const screenBottomMargin = parseInt(window.getComputedStyle(bgCardRef.current).marginBottom);
 
 		// Min height = 100vh - height of area above recipe card
-		const minHeight = window.innerHeight - (headerHeight + asideHeight + asideBottomMargin + screenBottomMargin);
+		const minHeight = window.innerHeight - (headerHeight + screenBottomMargin);
 		// content = instructions height + footer height + footer bottom offset (30px)
 		const contentHeight = instructionsHeight + footerHeight + 30;
 
@@ -40,19 +38,21 @@ const RecipeCard = (props) => {
 		mainRef.current.style.height = `${Math.max(minHeight,contentHeight)}px`;
 		// If ingredients overflows, display scroll blur, else don't
 		scrollBlurRef.current.style.display = ingredientsRef.current.scrollHeight > ingredientsRef.current.offsetHeight ? "block" : "none";
-	},[headerRef,asideRef,instructionsRef,footerRef]);
+	},[headerRef,instructionsRef,footerRef]);
 
 	return(
 		<section className={styles.recipeSection}>
-			<header ref={headerRef}>{ props.meal }</header>
-			<aside ref={asideRef}>
+			<header className={styles.recipeHeader} ref={headerRef}>
+				<Tag path={-1}>Go Back</Tag>
+				<h2><ins>{ props.meal }</ins></h2>
 				<span className={styles.category}>
 					Category: <span className={styles.link} onClick={() => navigateTo(`/Categories/${props.category}`)}>{ props.category }</span>
 				</span>
 				<span className={styles.area}>
 					Area: <span className={styles.link} onClick={() => navigateTo(`/Areas/${props.area}`)}>{ props.area }</span>
 				</span>
-			</aside>
+				<Button text="Home" path="/Home" />
+			</header>
 			<main ref={mainRef} className={styles.recipeCard}>
 				<figure onClick={() => window.open(`${props.source}`,"_blank")}>
 					<img src={props.img} alt={props.meal} />

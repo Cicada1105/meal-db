@@ -5,6 +5,18 @@
 	margin:auto;
 	width:80vw;
 }
+header.categoryHeader {
+	margin:auto;
+	width:50vw;
+}
+header.categoryHeader > div {
+	display:inline-block;
+}
+header.categoryHeader > h2 {
+	display:inline-block;
+	margin-left:11.15rem;
+	margin-right:11.15rem;
+}
 .flexWrap > section {
 	margin:3rem;
 }

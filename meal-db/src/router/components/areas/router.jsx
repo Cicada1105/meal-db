@@ -8,7 +8,7 @@ import Area from './area/index.jsx';
 function AreasRouter() {
 	return (
 		<Switch>
-			<Route exact path="/Areas" render={() => <Areas /> } />
+			<Route exact path="/Areas" component={Areas} />
 			<Route path="/Areas/:areaID" component={Area} />
 		</Switch>
 	)

@@ -8,9 +8,12 @@ function Tag(props) {
 	function navigate(pathIn) {
 		history.push(pathIn);
 	}
+	function goBack() {
+		history.goBack();
+	}
 
 	return (
-		<div className={ style.tag } onClick={() => props.path && navigate(props.path)}>
+		<div className={ style.tag } onClick={() => props.path && (props.path === -1 ? goBack() : navigate(props.path))}>
 			{ props.children }
 		</div>
 	);

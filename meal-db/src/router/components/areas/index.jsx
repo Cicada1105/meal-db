@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { getAreas } from '../../../app_state/action_creators/getActions.jsx';
 
 import { Button } from '../../../static_components/button.jsx';
+import { Tag } from '../../../static_components/tag.jsx';
 import styles from './index.module.css';
 
 class Areas extends React.Component {
 	constructor(props) {
 		super(props);
+		console.log(props);
 		this.state = {
 			areas: []
 		}
@@ -32,7 +34,11 @@ class Areas extends React.Component {
 	render() {
 		return(
 			<React.Fragment>
-				<h2><ins>Areas</ins></h2>
+				<header className={styles.areasHeader}>
+					<Tag path={-1}>Go Back</Tag>
+					<h2><ins>Areas</ins></h2>
+					<Button text="Home" path="/Home" />
+				</header>
 				<div className={styles.bg}></div>
 				<div className={styles.areasSection}>
 				{

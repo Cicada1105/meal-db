@@ -3,7 +3,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { filterName } from '../../../../app_state/action_creators/filterActions.jsx';
 
+import styles from './index.module.css';
+
 import { PreviewCard } from './previewCard.jsx';
+import { Button } from '../../../../static_components/button.jsx';
+import { Tag } from '../../../../static_components/tag.jsx';
 
 class SearchMeal extends React.Component {
 	constructor(props) {
@@ -58,7 +62,11 @@ class SearchMeal extends React.Component {
 	render() {
 		return(
 			<React.Fragment>
-				<h2><ins>Search Meal</ins></h2>
+				<header className={styles.searchMealHeader}>
+					<Tag path={-1}>Go Back</Tag>		
+					<h2><ins>Search Meal</ins></h2>
+					<Button text="Home" path="/Home" />
+				</header>
 				<input ref={this.inputRef} type="text" onKeyUp={(e) => this.handleClick(e)} />
 				{
 					this.state.filteredMeals !== undefined && this.state.filteredMeals.length !== 0 &&

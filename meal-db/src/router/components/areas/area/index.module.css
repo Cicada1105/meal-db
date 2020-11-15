@@ -5,6 +5,18 @@
 	margin:auto;
 	width:80vw;
 }
+header.areaHeader {
+	margin:auto;
+	width:50vw;
+}
+header.areaHeader > div {
+	display:inline-block;
+}
+header.areaHeader > h2 {
+	display:inline-block;
+	margin-left:11.5rem;
+	margin-right:11.5rem;
+}
 .flexWrap > section {
 	margin:3rem;
 }

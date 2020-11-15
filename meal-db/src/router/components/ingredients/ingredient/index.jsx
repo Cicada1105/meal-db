@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { filterIngredient } from '../../../../app_state/action_creators/filterActions.jsx';
 
 import { ImageCard } from '../../../../static_components/imageCard.jsx';
+import { Button } from '../../../../static_components/button.jsx';
+import { Tag } from '../../../../static_components/tag.jsx'
 import styles from './index.module.css';
 
 class Ingredient extends React.Component {
@@ -31,7 +33,11 @@ class Ingredient extends React.Component {
 	render() {
 		return(
 			<React.Fragment>
-				<h2><ins>{this.state.ingredientID}</ins></h2>
+				<header className={styles.ingredientHeader}>
+					<Tag path={-1}>Go Back</Tag>
+					<h2><ins>{this.state.ingredientID}</ins></h2>
+					<Button text="Home" path="/Home" />
+				</header>
 				<div className={styles.flexWrap}>
 				{ 
 					this.state.meals.map(meal => 
