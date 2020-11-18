@@ -77,7 +77,7 @@ class SearchMeal extends React.Component {
 }
 
 const mapStateToProps = state => {
-	return {meals: state.mealsReducer[0]};
+	return {meals: state.filterMealsReducer[0]};
 }
 export default connect(
 	mapStateToProps,

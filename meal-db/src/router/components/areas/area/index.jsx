@@ -65,7 +65,7 @@ class Area extends React.Component {
 }
 const mapStateToProps = state => {
 	return {
-		meals: [...state.mealsReducer]
+		meals: [...state.filterMealsReducer]
 	}
 }
 

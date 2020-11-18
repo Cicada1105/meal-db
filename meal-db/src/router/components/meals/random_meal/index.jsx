@@ -73,7 +73,7 @@ class RandomMeal extends React.Component {
 	}
 }
 const mapStateToProps = state => {
-	return {meal: state.mealsReducer[0]}
+	return {meal: state.getMealsReducer[0]}
 }
 
 export default connect(

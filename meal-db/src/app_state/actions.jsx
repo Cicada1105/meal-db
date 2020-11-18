@@ -11,6 +11,3 @@ export const GET_RANDOM_MEAL = "GET_RANDOM_MEAL";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const GET_INGREDIENTS = "GET_INGREDIENTS";
 export const GET_AREAS = "GET_AREAS";
-
-export const LOADING = "LOADING";
-export const NOT_LOADING = "NOT_LOADING";

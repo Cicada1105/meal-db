@@ -60,7 +60,7 @@ class Categories extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		categories: state.mealsReducer
+		categories: state.getMealsReducer
 	}
 }
 export default connect(
