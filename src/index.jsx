@@ -14,17 +14,17 @@ const store = createStore(mealDBReducer);
 class App extends React.Component {
 	render() {
 		return (
-			<Provider store={store}>
 				<div className="App">
 		    		<Background />
 		    		<MealDB />
 		    	</div>
-	    	</Provider>
 		);
 	}
 }
 
 ReactDOM.render(
-   <App />,
+	<Provider store={store}>
+   		<App />
+	</Provider>,
   document.getElementById('root')
 );

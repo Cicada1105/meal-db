@@ -1,4 +1,4 @@
-import React from 'react';
+	import React from 'react';
 
 import { connect } from 'react-redux';
 import { filterName } from '../../../../app_state/action_creators/filterActions.jsx';
@@ -6,70 +6,50 @@ import { filterName } from '../../../../app_state/action_creators/filterActions.
 import styles from './index.module.css';
 
 import { PreviewCard } from './previewCard.jsx';
-import { Button, Tag } from '../../../../static_components';
+import { Tag } from '../../../../static_components';
 
 class SearchMeal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			meals: [],
 			filteredMeals: []
 		}
 		this.inputRef = React.createRef();
 	}
 	handleClick = function(event) {
-		let keyCode = event.keyCode;
-		// a == 65 && z == 90
-		this.inputRef.current.removeEventListener("onKeyUp",(e) => this.handleClick(e));
-		if ((keyCode >= 65) && (keyCode <= 90)) {
-			let userData = event.target.value.toLowerCase();
-			if (userData.length === 1) {
-				fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${userData}`)
-					.then(response => response.json())
-					.then(data => this.props.filterName(data));
-			}
-			else {
-				this.setState(() => ({
-					filteredMeals: this.state.filteredMeals.filter(meal => meal.strMeal.toLowerCase().includes(userData))
-				}));
-			}	
+		let enteredVal = this.inputRef.current.value.toLowerCase();
+		let firstLetter = enteredVal.slice(0,1);
+		if (firstLetter) {
+			fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`)
+				.then(response => response.json())
+				.then(data =>  {
+					let filteredMeals = data.meals.filter((meal) => meal["strMeal"].toLowerCase().includes(enteredVal));
+					this.props.filterName({
+						meals: filteredMeals
+					});
+				})
 		}
-		else if (keyCode === 8) {
-			let userData = event.target.value.toLowerCase();
-			if ((userData.length === 0) && (this.state.filteredMeals.length > 0)) {
-				this.setState(() => ({
-					meals: [],
-					filteredMeals: []
-				}));
-			}
-			else if (userData.length > 0) {
-				this.setState(() => ({
-					filteredMeals: this.state.meals.filter(meal => meal.strMeal.toLowerCase().includes(userData))
-				}));
-			}
-		}
-		this.inputRef.current.addEventListener("onKeyUp",(e) => this.handleClick(e));
 	}
-	componentDidUpdate(prevProps,prevState) {
-		if ((prevState.meals) && (prevState.meals.length === 0)) {
-			this.setState(() => ({
-				meals: this.props.meals,
-				filteredMeals: this.props.meals
-			}));
-		}
+	componentWillUnmount() {
+		// Clean up state
+		this.props.filterName({})
 	}
 	render() {
 		return(
 			<React.Fragment>
 				<header className={styles.searchMealHeader}>
-					<Tag path={-1}>Go Back</Tag>		
+					<Tag path={-1}>Go Back</Tag>	
 					<h2><ins>Search Meal</ins></h2>
-					<Button text="Home" path="/Home" />
 				</header>
-				<input ref={this.inputRef} type="text" onKeyUp={(e) => this.handleClick(e)} />
+				<input ref={this.inputRef} type="text" />
+				<div className={styles.searchBtn} onClick={(e) => this.handleClick(e)}>Search</div>
 				{
-					this.state.filteredMeals !== undefined && this.state.filteredMeals.length !== 0 &&
-					this.state.filteredMeals.map((meal, i) => <PreviewCard key={i} {...meal} /> )
+					this.props.meals !== undefined && 
+					(
+						this.props.meals.length !== 0 ?
+						this.props.meals.map((meal, i) => <PreviewCard key={i} {...meal} /> ) :
+						<h3>Unable to find "{this.inputRef.current.value}"</h3>
+					)
 				}
 			</React.Fragment>
 		);

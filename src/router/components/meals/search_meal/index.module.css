@@ -1,17 +1,33 @@
 header.searchMealHeader {
 	margin:auto;
+	margin-top: 1.25rem;
 	width:50vw;
 }
 header.searchMealHeader > div {
 	display:inline-block;
+	float:left;
 }
 header.searchMealHeader > h2 {
-	display:inline-block;
-	margin-left:10.69rem;
-	margin-right:10.69rem;
+	display:block;
+	margin:auto;
+	width:fit-content;	
+}
+.searchBtn {
+	background: linear-gradient(25deg, rgb(46,113,166), rgb(153,213,249));
+	color:white;
+	margin:auto;
+	margin-top:1.25rem;
+	font-weight: bold;
+	border-radius:5px;
+	padding: 8px 10px 9px 10px;
+	width:100px;
+}
+.searchBtn:hover {
+	cursor:pointer;
 }
 input {
 	position:relative;
+	display:block;
 	font-size:1.25rem;
 	outline:none;
 	border-width:4px;
@@ -22,7 +38,7 @@ input {
 	height:2rem;
 	margin:auto;
 	padding-left:5px;
-	margin-top:5px;
+	margin-top:2rem;
 	background-color:rgba(255,255,255,0.3);
 	z-index: 1;
 }
