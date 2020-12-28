@@ -25,12 +25,12 @@ const RecipeCard = (props) => {
 		const instructionsHeight = instructionsRef.current.offsetHeight;
 		const footerHeight = footerRef.current.offsetHeight;
 
-		const screenBottomMargin = parseInt(window.getComputedStyle(bgCardRef.current).marginBottom);
+		const screenBottomMargin = parseInt(window.getComputedStyle(mainRef.current).marginBottom);
 
 		// Min height = 100vh - height of area above recipe card
 		const minHeight = window.innerHeight - (headerHeight + screenBottomMargin);
-		// content = instructions height + footer height + footer bottom offset (30px)
-		const contentHeight = instructionsHeight + footerHeight + 30;
+		// content = instructions height + footer height + footer bottom offset (36px)
+		const contentHeight = instructionsHeight + footerHeight + screenBottomMargin;
 
 		// Set background card to height of max val between minHeight and contentHeight
 		bgCardRef.current.style.height = `${Math.max(minHeight,contentHeight)}px`;
