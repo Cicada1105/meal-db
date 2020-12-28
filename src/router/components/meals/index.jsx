@@ -1,77 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
 import { filterID } from '../../../app_state/action_creators/filterActions.jsx';
 
 import { RecipeCard } from '../../../static_components';
 
-class Meal extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isLoading: true,
-			mealID: props.match.params.mealID,
-			meal: { 
-				strMeal: "",
-				strCategory: "",
-				strArea: "",
-				strInstructions: "",
-				strMealThumb: "",
-				strTags: "",
-				strYoutube: "",
-				strIngredients: [],
-				strSource: ""
-			}
-		}
-	}
-	componentDidMount() {
-		fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.state.mealID}`)
+const Meal = ({ filterID, match:{params:{mealID}}, meal }) => {
+	// Initialize state
+	let [isLoading, setLoadingState] = useState(true);
+	let [_meal,setMeal] = useState({});
+
+	// Hadle fetch request
+	useEffect(() => {
+		fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`)
 			.then(response => response.json())
-			.then(data => this.props.filterID(data));
-	}
-	componentDidUpdate(prevProps,prevState) {
-		if (prevState.meal["strMeal"].localeCompare("") === 0) {
+			.then(data => filterID(data));
+	},[filterID,mealID])
+	// Once store has been updated, update local state
+	useEffect(() => {
+		if (meal !== undefined) {
 			let i = 1;
 			let formattedStr = "";
 			let isEmptyStr;
 			let ingredients = [];
 			do {
-				isEmptyStr = (this.props.meal[`strMeasure${i}`] === "") || (this.props.meal[`strMeasure${i}`] === " ");
-				formattedStr = this.props.meal[`strIngredient${i}`] + (isEmptyStr ? "" : ` - ${this.props.meal[`strMeasure${i}`]}`);
+				isEmptyStr = (meal[`strMeasure${i}`] === "") || (meal[`strMeasure${i}`] === " ");
+				formattedStr = meal[`strIngredient${i}`] + (isEmptyStr ? "" : ` - ${meal[`strMeasure${i}`]}`);
 				ingredients.push(formattedStr);
 				i++;
-			} while((this.props.meal[`strIngredient${i}`] !== "") && (this.props.meal[`strIngredient${i}`] !== null) && (i <= 20));
+			} while((meal[`strIngredient${i}`] !== "") && (meal[`strIngredient${i}`] !== null) && (i <= 20));
 
-			this.setState(() => ({
-				isLoading: false,
-				meal: {
-					strMeal: this.props.meal["strMeal"],
-					strCategory: this.props.meal["strCategory"],
-					strArea: this.props.meal["strArea"],
-					strInstructions: this.props.meal["strInstructions"],
-					strMealThumb: this.props.meal["strMealThumb"],
-					strTags: this.props.meal["strTags"],
-					strYoutube: this.props.meal["strYoutube"],
-					strIngredients: [...ingredients],
-					strSource: this.props.meal["strSource"]
-				}
-			}));
+			setLoadingState(false);
+			setMeal({
+				strMeal: meal["strMeal"],
+				strCategory: meal["strCategory"],
+				strArea: meal["strArea"],
+				strInstructions: meal["strInstructions"],
+				strMealThumb: meal["strMealThumb"],
+				strTags: meal["strTags"],
+				strYoutube: meal["strYoutube"],
+				strIngredients: [...ingredients],
+				strSource: meal["strSource"]
+			})
 		}
-	}
-	render() {
-		return (
-			<React.Fragment>
-			{
-				this.state.isLoading ?
-					<h2>Loading...</h2> :
-					<RecipeCard meal={this.state.meal["strMeal"]} category={this.state.meal["strCategory"]} source={this.state.meal["strSource"]}
-							area={this.state.meal["strArea"]} img={this.state.meal["strMealThumb"]} 
-							ingredients={this.state.meal["strIngredients"]} instructions={this.state.meal["strInstructions"]} 
-							tags={this.state.meal["strTags"]} />
-			}
-			</React.Fragment>
-		)
-	}
+
+		// Cleanup 
+		return () => {
+			filterID({meals:[undefined]})
+		}
+	},[filterID,meal])
+
+	return (
+		<React.Fragment>
+		{
+			isLoading ?
+				<h2>Loading...</h2> :
+				<RecipeCard {..._meal} btnText="Home" btnPath="/Home" />
+		}
+		</React.Fragment>
+	)
 }
 
 const mapStateToProps = (state) => {

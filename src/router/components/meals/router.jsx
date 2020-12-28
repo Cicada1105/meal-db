@@ -10,7 +10,7 @@ function MealsRouter() {
 	return (
 		<Switch>
 			<Route path="/Meals/Random" render={() => <RandomMeal /> } />
-			<Route path="/Meals/Search" render={() => <SearchMeal /> } />
+			<Route path="/Meals/Search" component={ SearchMeal } />
 			<Route path="/Meals/:mealID" component={ Meal } />
 		</Switch>
 	)

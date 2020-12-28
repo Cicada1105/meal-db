@@ -1,4 +1,4 @@
-	import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import { connect } from 'react-redux';
 import { filterName } from '../../../../app_state/action_creators/filterActions.jsx';
@@ -8,52 +8,65 @@ import styles from './index.module.css';
 import { PreviewCard } from './previewCard.jsx';
 import { Tag } from '../../../../static_components';
 
-class SearchMeal extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			filteredMeals: []
+const SearchMeal = ({ history, filterName, meals }) => {
+	// Initialize state
+	const [filteredMeals, setFilteredMeals] = useState(undefined);
+	const [isLoading, setLoading] = useState(false);
+	// Initialie references
+	const inputRef = useRef("");
+
+	useEffect(() => {
+		if (meals !== undefined)
+			setFilteredMeals([...meals])
+
+		return () => {
+			filterName({meals: undefined})
 		}
-		this.inputRef = React.createRef();
-	}
-	handleClick = function(event) {
-		let enteredVal = this.inputRef.current.value.toLowerCase();
+	},[meals,filterName]);
+
+	const handleClick = function() {
+		// Update loading state
+		setLoading(true);
+		// Get user input
+		let enteredVal = inputRef.current.value.toLowerCase();
+		// Extract first letter for searching mealdb
 		let firstLetter = enteredVal.slice(0,1);
 		if (firstLetter) {
 			fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`)
 				.then(response => response.json())
 				.then(data =>  {
 					let filteredMeals = data.meals.filter((meal) => meal["strMeal"].toLowerCase().includes(enteredVal));
-					this.props.filterName({
+					filterName({
 						meals: filteredMeals
 					});
+					// Done loading request
+					setLoading(false);
 				})
 		}
 	}
-	componentWillUnmount() {
-		// Clean up state
-		this.props.filterName({})
-	}
-	render() {
-		return(
-			<React.Fragment>
-				<header className={styles.searchMealHeader}>
-					<Tag path={-1}>Go Back</Tag>	
-					<h2><ins>Search Meal</ins></h2>
-				</header>
-				<input ref={this.inputRef} type="text" />
-				<div className={styles.searchBtn} onClick={(e) => this.handleClick(e)}>Search</div>
-				{
-					this.props.meals !== undefined && 
+	return (
+		<React.Fragment>
+			<header className={styles.searchMealHeader}>
+				<Tag path={() => history.goBack()}>Go Back</Tag>	
+				<h2><ins>Search Meal</ins></h2>
+			</header>
+			<input ref={inputRef} type="text" />
+			<div className={styles.searchBtn} onClick={() => handleClick()}>Search</div>
+			{
+				//filteredMeals !== undefined && 
+				filteredMeals !== undefined &&
+				(
+					isLoading ?
+					<h3>Loading...</h3> :
 					(
-						this.props.meals.length !== 0 ?
-						this.props.meals.map((meal, i) => <PreviewCard key={i} {...meal} /> ) :
-						<h3>Unable to find "{this.inputRef.current.value}"</h3>
+						filteredMeals.length !== 0 ?
+						filteredMeals.map((meal,i) => <PreviewCard key={i} {...meal} />) :
+						<h3>Unable to find "{inputRef.current.value}"</h3>
 					)
-				}
-			</React.Fragment>
-		);
-	}
+				)
+			}
+		</React.Fragment>
+	)
 }
 
 const mapStateToProps = state => {

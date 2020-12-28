@@ -63,10 +63,7 @@ class RandomMeal extends React.Component {
 			{
 				this.state.isLoading ?
 					<h2>Loading...</h2> :
-					<RecipeCard meal={this.state.meal["strMeal"]} category={this.state.meal["strCategory"]} source={this.state.meal["strSource"]}
-							area={this.state.meal["strArea"]} img={this.state.meal["strMealThumb"]} 
-							ingredients={this.state.meal["strIngredients"]} instructions={this.state.meal["strInstructions"]} 
-							tags={this.state.meal["strTags"]} />
+					<RecipeCard {...this.state.meal} btnText="Random" btnPath={() => document.location.reload()} />
 			}
 			</React.Fragment>
 		);

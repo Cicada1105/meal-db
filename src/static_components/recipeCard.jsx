@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Button } from './button.jsx';
 import { Tag } from './tag.jsx';
 
 import styles from './static_style.module.css';
@@ -43,19 +42,19 @@ const RecipeCard = (props) => {
 	return(
 		<section className={styles.recipeSection}>
 			<header className={styles.recipeHeader} ref={headerRef}>
-				<Tag path={-1}>Go Back</Tag>
-				<h2><ins>{ props.meal }</ins></h2>
+				<Tag path={() => history.goBack()}>Go Back</Tag>
+				<h2><ins>{ props.strMeal }</ins></h2>
 				<span className={styles.category}>
-					Category: <span className={styles.link} onClick={() => navigateTo(`/Categories/${props.category}`)}>{ props.category }</span>
+					Category: <span className={styles.link} onClick={() => navigateTo(`/Categories/${props.strCategory}`)}>{ props.strCategory }</span>
 				</span>
 				<span className={styles.area}>
-					Area: <span className={styles.link} onClick={() => navigateTo(`/Areas/${props.area}`)}>{ props.area }</span>
+					Area: <span className={styles.link} onClick={() => navigateTo(`/Areas/${props.strArea}`)}>{ props.strArea }</span>
 				</span>
-				<Button text="Home" path="/Home" />
+				<Tag path={props.btnPath}>{ props.btnText }</Tag>
 			</header>
 			<main ref={mainRef} className={styles.recipeCard}>
-				<figure onClick={() => window.open(`${props.source}`,"_blank")}>
-					<img src={props.img} alt={props.meal} />
+				<figure onClick={() => window.open(`${props.strMealThumb}`,"_blank")}>
+					<img src={props.strMealThumb} alt={props.strMeal} />
 					<figcaption>- View Source -</figcaption>
 				</figure>
 
@@ -63,26 +62,26 @@ const RecipeCard = (props) => {
 					<h3>Ingredients</h3>
 					<div ref={ingredientsRef} className={styles.ingredients}>
 					{
-						props.ingredients.map((ingredient, i) => <p key={i}>{ ingredient }</p> )
+						props.strIngredients.map((ingredient, i) => <p key={i}>{ ingredient }</p> )
 					}
 					</div>
 					<div ref={scrollBlurRef} className={styles.scrollBlur}></div>
 				</article>
 				<div ref={instructionsRef} className={styles.instructions}>
 				{
-					props.instructions.includes("\r\n\r\n") ?
-					props.instructions.split("\r\n\r\n").map((instruction, i) => <p key={i}>{ instruction }</p> ) :
-					props.instructions.split("\r\n").map((instruction, i) => <p key={i}>{ instruction }</p> )
+					props.strInstructions.includes("\r\n\r\n") ?
+					props.strInstructions.split("\r\n\r\n").map((instruction, i) => <p key={i}>{ instruction }</p> ) :
+					props.strInstructions.split("\r\n").map((instruction, i) => <p key={i}>{ instruction }</p> )
 				}
 				</div>
 				<footer ref={footerRef}>
 					Tags:
 					{
-						props.tags &&
-						props.tags.split(",").map((tag, i) => 
-							<Tag key={i}>
+						props.strTags &&
+						props.strTags.split(",").map((tag, i) => 
+							<p key={i}>
 								{ tag }
-							</Tag>
+							</p>
 						)
 					}
 				</footer>
