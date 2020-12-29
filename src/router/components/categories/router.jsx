@@ -8,8 +8,8 @@ import Category from './category/index.jsx';
 function CategoriesRouter() {
 	return (
 		<Switch>
-			<Route exact path="/Categories" render={() => <Categories /> } />
-			<Route path="/Categories/:categoryID" component={Category} />
+			<Route exact path="/Categories" render={(routeProps) => <Categories {...routeProps}/> } />
+			<Route path="/Categories/:categoryID" render={(routeProps) => <Category {...routeProps}/>} />
 		</Switch>
 	)
 }

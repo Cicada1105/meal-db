@@ -34,7 +34,7 @@ class Ingredient extends React.Component {
 		return(
 			<React.Fragment>
 				<header className={styles.ingredientHeader}>
-					<Tag path={-1}>Go Back</Tag>
+					<Tag path={() => this.props.history.goBack()}>Go Back</Tag>
 					<h2><ins>{this.state.ingredientID}</ins></h2>
 					<Button text="Home" path="/Home" />
 				</header>

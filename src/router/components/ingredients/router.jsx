@@ -8,8 +8,8 @@ import Ingredient from './ingredient/index.jsx';
 function IngredientsRouter() {
 	return (
 		<Switch>
-			<Route exact path="/Ingredients" render={() => <Ingredients /> } />
-			<Route path="/Ingredients/:ingredientID" component={Ingredient} />
+			<Route exact path="/Ingredients" render={(routeProps) => <Ingredients {...routeProps}/> } />
+			<Route path="/Ingredients/:ingredientID" render={(routeProps) => <Ingredient {...routeProps}/>} />
 		</Switch>
 	)
 }

@@ -53,7 +53,7 @@ const RecipeCard = (props) => {
 				<Tag path={props.btnPath}>{ props.btnText }</Tag>
 			</header>
 			<main ref={mainRef} className={styles.recipeCard}>
-				<figure onClick={() => window.open(`${props.strMealThumb}`,"_blank")}>
+				<figure onClick={() => window.open(`${props.strSource}`,"_blank")}>
 					<img src={props.strMealThumb} alt={props.strMeal} />
 					<figcaption>- View Source -</figcaption>
 				</figure>
@@ -75,14 +75,18 @@ const RecipeCard = (props) => {
 				}
 				</div>
 				<footer ref={footerRef}>
-					Tags:
 					{
 						props.strTags &&
-						props.strTags.split(",").map((tag, i) => 
-							<p key={i}>
-								{ tag }
-							</p>
-						)
+						<>
+							<p>Tags:</p>
+							{
+								props.strTags.split(",").map((tag, i) => 
+									<p key={i}>
+										{ tag }
+									</p>
+								)
+							}
+						</>
 					}
 				</footer>
 			</main>

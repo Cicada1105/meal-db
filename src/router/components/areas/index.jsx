@@ -36,7 +36,7 @@ class Areas extends React.Component {
 		return(
 			<React.Fragment>
 				<header className={styles.areasHeader}>
-					<Tag path={-1}>Go Back</Tag>
+					<Tag path={() => this.props.history.goBack()}>Go Back</Tag>
 					<h2><ins>Areas</ins></h2>
 					<Button text="Home" path="/Home" />
 				</header>

@@ -34,7 +34,7 @@ class Category extends React.Component {
 		return(
 			<React.Fragment>
 				<header className={styles.categoryHeader}>
-					<Tag path={-1}>Go Back</Tag>
+					<Tag path={() => this.props.history.goBack()}>Go Back</Tag>
 					<h2><ins>{ this.state.categoryID }</ins></h2>
 					<Button text="Home" path="/Home" />
 				</header>
