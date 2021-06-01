@@ -24,11 +24,15 @@ class Ingredients extends React.Component {
 			this.setState(function() {
 				return {
 					isLoading: false,
-					ingredients: [...this.props.meals]
+					ingredients: [...this.props["meals"]]
 				}
 			})
 		}
 	}
+	componentWillUnmount() {
+		this.props.getIngredients({meals: []})
+	}
+	
 	render() {
 		return (
 			<React.Fragment>
@@ -47,9 +51,10 @@ class Ingredients extends React.Component {
 							<DescriptionCard header="Loading..." />
 						</> : 
 						this.state.ingredients.map(meal => 
+							meal["strDescription"] === null || meal["strDescription"] === "" ||
 							<DescriptionCard key={meal.idIngredient} header={meal.strIngredient}
-							 imageURL={`https://www.themealdb.com/images/ingredients/${meal.strIngredient}-Small.png`}
-							 imageLink={`Ingredients/${meal.strIngredient}`} descr={meal.strDescription} />
+							 	imageURL={`https://www.themealdb.com/images/ingredients/${meal.strIngredient}-Small.png`}
+							 	imageLink={`Ingredients/${meal.strIngredient}`} descr={meal.strDescription} />
 						)
 				}
 				</div>
@@ -60,7 +65,7 @@ class Ingredients extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		meals: [...state.getMealsReducer]
+		meals: state.getMealsReducer
 	}
 }
 

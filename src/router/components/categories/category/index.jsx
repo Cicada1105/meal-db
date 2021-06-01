@@ -11,26 +11,28 @@ class Category extends React.Component {
 		super(props);
 		this.state = {
 			isLoading: true,
-			categoryID: props.match.params.categoryID,
-			meals: []
+			categoryID: props.match.params.categoryID
 		}
 	}
 	componentDidMount() {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${this.state.categoryID}`)
 			.then(response => response.json())
 			.then(data => this.props.filterCategory(data));
+
+		this.setState(function() {
+			return {
+				isLoading: false
+			}
+		});
 	}
-	componentDidUpdate(prevProps,prevState) {
-		if (prevState["meals"].length === 0) {
-			this.setState(function() {
-				return {
-					isLoading: false,
-					meals: [...this.props.meals]
-				}
-			})
-		}
+	componentWillUnmount() {
+		this.props.filterCategory({meals: []});
 	}
 	render() {
+		const emptyLoadingPath = {
+			from:"",
+			to:""
+		}
 		return(
 			<React.Fragment>
 				<header className={styles.categoryHeader}>
@@ -40,15 +42,18 @@ class Category extends React.Component {
 				</header>
 				<div className={styles.flexWrap}>
 				{
-					this.state.isLoading ?
+					(this.state.isLoading || this.props.meals.length === 0) ?
 						<>
-							<ImageCard text="Loading..." />
-							<ImageCard text="Loading..." />
-							<ImageCard text="Loading..." />
-							<ImageCard text="Loading..." />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
 						</> :
-						this.state.meals.map((meal,i) =>
-							<ImageCard key={i} text={meal["strMeal"]} imageURL={meal["strMealThumb"]} recipeLink={`/Meals/${meal["idMeal"]}`} />
+						this.props.meals.map((meal,i) =>
+							<ImageCard key={i} location={{
+								from:`/Categories/${this.state.categoryID}`,
+								to:`/Meals/${meal["idMeal"]}`
+							}} text={meal["strMeal"]} imageURL={meal["strMealThumb"]} />
 						)
 				}
 				</div>

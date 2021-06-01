@@ -6,11 +6,20 @@
 	width:80vw;
 }
 header.areaHeader {
+	position: relative;
 	margin:auto;
 	width:50vw;
 }
 header.areaHeader > div {
 	display:inline-block;
+	position: absolute;
+	top: 20px;
+}
+header.areaHeader > div:first-of-type {
+	left: 30px;
+}
+header.areaHeader > div:last-of-type {
+	right: 30px;
 }
 header.areaHeader > h2 {
 	display:inline-block;

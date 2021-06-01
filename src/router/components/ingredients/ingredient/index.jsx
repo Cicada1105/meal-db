@@ -11,24 +11,22 @@ class Ingredient extends React.Component {
 		super(props);
 		this.state = {
 			isLoading: true,
-			ingredientID: props.match.params.ingredientID,
-			meals: []
+			ingredientID: props.match.params.ingredientID
 		}
 	}
 	componentDidMount() {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${this.state.ingredientID}`)
 			.then(response => response.json())
-			.then(data => this.props.filterIngredient(data));
+			.then(data => data["meals"] !== null ? this.props.filterIngredient(data) : this.props.filterIngredient({meals:[]}));
+
+		this.setState(function() {
+			return {
+				isLoading: false
+			}
+		});
 	}
-	componentDidUpdate(prevProps,prevState) {
-		if (prevState.meals.length === 0) {
-			this.setState(function() {
-				return {
-					isLoading: false,
-					meals: [...this.props.meals]
-				}
-			})
-		}
+	componentWillUnmount() {
+		this.props.filterIngredient({meals: []});
 	}
 	render() {
 		return(
@@ -38,21 +36,29 @@ class Ingredient extends React.Component {
 					<h2><ins>{this.state.ingredientID}</ins></h2>
 					<Button text="Home" path="/Home" />
 				</header>
-				<div className={styles.flexWrap}>
 				{
 					this.state.isLoading ?
-						<>
+						<div className={styles.flexWrap}>
 							<ImageCard text="Loading..." />
 							<ImageCard text="Loading..." />
 							<ImageCard text="Loading..." />
 							<ImageCard text="Loading..." />
-						</> :
-						this.state.meals.map(meal => 
-							<ImageCard key={meal.idMeal} text={meal.strMeal} imageURL={meal.strMealThumb} 
-								recipeLink={`/Meals/${meal.idMeal}`} />
+						</div> : (
+							this.props.meals.length === 0 ?
+							<h3>Unable to find "{this.state.ingredientID}" at this time</h3>
+							:
+							<div className={styles.flexWrap}>
+							{
+								this.props.meals.map(meal => 
+									<ImageCard key={meal.idMeal} location={{
+										from: `/Ingredients/${this.state.ingredientID}`,
+										to: `/Meals/${meal.idMeal}`
+									}} text={meal.strMeal} imageURL={meal.strMealThumb} />
+								)
+							}
+							</div>
 						)
 				}
-				</div>
 			</React.Fragment>
 		)
 	}

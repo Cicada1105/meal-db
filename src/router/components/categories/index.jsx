@@ -19,7 +19,7 @@ class Categories extends React.Component {
 			.then(response => response.json())
 			.then(data => this.props.getCategories(data));
 	}
-	componentDidUpdate(prevProps,prevState) {
+	componentDidUpdate(prevProps, prevState) {
 		if (prevState["categories"].length === 0) {
 			this.setState(function() {
 				return {
@@ -28,6 +28,9 @@ class Categories extends React.Component {
 				}
 			})
 		}
+	}
+	componentWillUnmount() {
+		this.props.getCategories({categories: []});
 	}
 	render() {
 		return (
@@ -63,6 +66,7 @@ const mapStateToProps = state => {
 		categories: state.getMealsReducer
 	}
 }
+
 export default connect(
 	mapStateToProps,
 	{ getCategories }

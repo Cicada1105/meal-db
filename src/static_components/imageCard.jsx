@@ -9,7 +9,7 @@ function ImageCard(props) {
 			<h3>{props.text}</h3>
 			<img src={props.imageURL} alt={props.text} />
 			<div className={styles.cardBg}></div>
-			<Button text="View Recipe" path={props.recipeLink} />
+			<Button text="View Recipe" location={props.location} />
 		</section>	
 	);
 }

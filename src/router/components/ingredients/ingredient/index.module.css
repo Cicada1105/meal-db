@@ -6,11 +6,20 @@
 	width:80vw;
 }
 header.ingredientHeader {
+	position: relative;
 	margin:auto;
 	width:50vw;
 }
 header.ingredientHeader > div {
 	display:inline-block;
+	position: absolute;
+	top: 20px;
+}
+header.ingredientHeader > div:first-of-type {
+	left: 30px;
+}
+header.ingredientHeader > div:last-of-type {
+	right: 30px;
 }
 header.ingredientHeader > h2 {
 	display:inline-block;

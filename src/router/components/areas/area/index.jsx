@@ -11,28 +11,28 @@ class Area extends React.Component {
 		super(props);
 		this.state = {
 			isLoading: true,
-			areaID: props.match.params.areaID,
-			meals: []
+			areaID: props.match.params.areaID
 		}
 	}
 	componentDidMount() {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${this.state.areaID}`)
 			.then(response => response.json())
-			.then(data => {
-				this.props.filterArea(data);
-			});
+			.then(data => this.props.filterArea(data));
+
+		this.setState(function() {
+			return {
+				isLoading: false
+			}
+		})
 	}
-	componentDidUpdate(prevProps,prevState) {
-		if (prevState["meals"].length === 0) {
-			this.setState(function() {
-				return {
-					isLoading: false,
-					meals: [...this.props.meals]
-				}
-			})
-		}
+	componentWillUnmount() {
+		this.props.filterArea({meals: []})
 	}
 	render() {
+		const emptyLoadingPath = {
+			from:"",
+			to:""
+		}
 		return (
 			<React.Fragment>
 				<header className={styles.areaHeader}>
@@ -44,14 +44,16 @@ class Area extends React.Component {
 				{
 					this.state.isLoading ?
 						<>
-							<ImageCard text="Loading..." />
-							<ImageCard text="Loading..." />
-							<ImageCard text="Loading..." />
-							<ImageCard text="Loading..." /> 
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
 						</> :
-						this.state.meals.map(meal =>
-							<ImageCard key={meal.idMeal} text={meal.strMeal} imageURL={meal.strMealThumb} 
-								recipeLink={`/Meals/${meal.idMeal}`} />
+						this.props.meals.map(meal =>
+							<ImageCard key={meal.idMeal} location={{
+								from: `/Areas/${this.state.areaID}`,
+								to: `/Meals/${meal.idMeal}`
+							}} text={meal.strMeal} imageURL={meal.strMealThumb} />
 						)
 				}
 				</div>
@@ -61,7 +63,7 @@ class Area extends React.Component {
 }
 const mapStateToProps = state => {
 	return {
-		meals: [...state.filterMealsReducer]
+		meals: state.filterMealsReducer
 	}
 }
 

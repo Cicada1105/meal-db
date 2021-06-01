@@ -11,7 +11,7 @@ function MealsRouter() {
 		<Switch>
 			<Route path="/Meals/Random" render={() => <RandomMeal /> } />
 			<Route path="/Meals/Search" component={ SearchMeal } />
-			<Route path="/Meals/:mealID" component={ Meal } />
+			<Route path="/Meals/:mealID" render={(routerProps) => <Meal {...routerProps} /> } />
 		</Switch>
 	)
 }

@@ -6,7 +6,7 @@ import {
 export const filterMealsReducer = (state = [], action) => {
 	switch(action.type) {
 		case FILTER_BY_NAME:
-			return [action.payload["meals"]]
+			return action.payload["meals"]
 		case FILTER_BY_ID:
 			return [action.payload["mealRecipe"]]
 		case FILTER_BY_CATEGORY:

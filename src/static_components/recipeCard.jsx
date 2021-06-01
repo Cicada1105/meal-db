@@ -7,7 +7,7 @@ import styles from './static_style.module.css';
 
 const RecipeCard = (props) => {
 	const history = useHistory();
-
+	
 	const headerRef = useRef(null);
 	const mainRef = useRef(null);
 	const ingredientsRef = useRef(null);
@@ -18,6 +18,13 @@ const RecipeCard = (props) => {
 
 	function navigateTo(pathIn) {
 		history.push(pathIn);
+	}
+	function previousPage() {
+		/*if (history.location.state)
+			history.push(history.location.state["previousRoute"]);
+		else
+			history.goBack();*/
+		history.goBack();
 	}
 
 	useEffect(() => {
@@ -42,7 +49,7 @@ const RecipeCard = (props) => {
 	return(
 		<section className={styles.recipeSection}>
 			<header className={styles.recipeHeader} ref={headerRef}>
-				<Tag path={() => history.goBack()}>Go Back</Tag>
+				<Tag path={() => previousPage()}>Go Back</Tag>
 				<h2><ins>{ props.strMeal }</ins></h2>
 				<span className={styles.category}>
 					Category: <span className={styles.link} onClick={() => navigateTo(`/Categories/${props.strCategory}`)}>{ props.strCategory }</span>

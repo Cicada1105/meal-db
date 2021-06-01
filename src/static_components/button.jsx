@@ -4,9 +4,16 @@ import { Tag } from './tag.jsx';
 import styles from './static_style.module.css';
 
 function Button(props) {
+	const location = props.location ? {
+		pathname: props.location.to,
+		state: {
+			previousRoute: props.location.from
+		}
+	} : props.path;
+	
 	return(
-		<Tag path={ props.path }>
-			<Link to={props.path} className={ styles.button } onClick={(e) => e.preventDefault()}>{ props.text }</Link>
+		<Tag path={ location }>
+			<Link to={ location } className={ styles.button } onClick={(e) => e.preventDefault()}>{ props.text }</Link>
 		</Tag>
 	);
 }

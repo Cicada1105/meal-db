@@ -5,12 +5,12 @@ import style from './static_style.module.css';
 function Tag(props) {
 	let history = useHistory();
 
-	function navigate(pathIn) {
-		history.push(pathIn);
+	function navigate(location) {
+		history.push(location)
 	}
 
 	return (
-		<div className={ style.tag } onClick={() => typeof props.path === "string" ? navigate(props.path) : props.path()}>
+		<div className={ style.tag } onClick={() => typeof props.path === "function" ? props.path() : navigate(props.path)}>
 			{ props.children }
 		</div>
 	);

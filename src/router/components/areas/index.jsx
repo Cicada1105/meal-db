@@ -57,7 +57,7 @@ class Areas extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		meals: [...state.getMealsReducer]
+		meals: state.getMealsReducer
 	}
 }
 
