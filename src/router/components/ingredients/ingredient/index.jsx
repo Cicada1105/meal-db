@@ -10,25 +10,28 @@ class Ingredient extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isLoading: true,
+			isLoading: false,
 			ingredientID: props.match.params.ingredientID
 		}
 	}
 	componentDidMount() {
+		this.setState(() => ({ isLoading: true }));
+
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${this.state.ingredientID}`)
 			.then(response => response.json())
-			.then(data => data["meals"] !== null ? this.props.filterIngredient(data) : this.props.filterIngredient({meals:[]}));
-
-		this.setState(function() {
-			return {
-				isLoading: false
-			}
-		});
+			.then(data => {
+				data["meals"] !== null ? this.props.filterIngredient(data) : this.props.filterIngredient({meals:[]});
+				this.setState(() => ({ isLoading: false }));
+			});
 	}
 	componentWillUnmount() {
 		this.props.filterIngredient({meals: []});
 	}
 	render() {
+		const emptyLoadingPath = {
+			from:"",
+			to:""
+		}
 		return(
 			<React.Fragment>
 				<header className={styles.ingredientHeader}>
@@ -39,13 +42,13 @@ class Ingredient extends React.Component {
 				{
 					this.state.isLoading ?
 						<div className={styles.flexWrap}>
-							<ImageCard text="Loading..." />
-							<ImageCard text="Loading..." />
-							<ImageCard text="Loading..." />
-							<ImageCard text="Loading..." />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
+							<ImageCard text="Loading..." location={emptyLoadingPath} />
 						</div> : (
 							this.props.meals.length === 0 ?
-							<h3>Unable to find "{this.state.ingredientID}" at this time</h3>
+							<h3>Foods with "{this.state.ingredientID}" as an ingredient are not available</h3>
 							:
 							<div className={styles.flexWrap}>
 							{

@@ -26,6 +26,9 @@ header.ingredientHeader > h2 {
 	margin-left:11rem;
 	margin-right:11rem;
 }
+header.ingredientHeader + h3 {
+	color: white;
+}
 .flexWrap > section {
 	margin:3rem;
 }

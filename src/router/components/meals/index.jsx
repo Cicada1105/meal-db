@@ -27,16 +27,21 @@ class Meal extends React.Component {
 		// Store retrieved meals into local state for formatting 
 		if ((prevProps.meal.length === 0) && (this.props.meal.length === 1)) {
 			let i = 1;
-			let _meal = this.props.meal;
+			let _meal = this.props.meal[0];
 			let formattedStr = "";
 			let isEmptyStr;
 			let ingredients = [];
+			let ingredient, measurement;
 			do {
-				isEmptyStr = (_meal[`strMeasure${i}`] === "") || (_meal[`strMeasure${i}`] === " ");
-				formattedStr = _meal[`strIngredient${i}`] + (isEmptyStr ? "" : ` - ${_meal[`strMeasure${i}`]}`);
+				ingredient = _meal[`strIngredient${i}`];
+				measurement = _meal[`strMeasure${i}`];
+
+				isEmptyStr = (measurement === "") || (measurement === " ") || (measurement === null);
+				formattedStr = ingredient + (isEmptyStr ? "" : ` - ${measurement}`);
 				ingredients.push(formattedStr);
 				i++;
-			} while((_meal[`strIngredient${i}`] !== "") && (_meal[`strIngredient${i}`] !== null) && (i <= 20));
+
+			} while((_meal[`strIngredient${i}`] !== "") && (_meal[`strIngredient${i}`] !== null) && (_meal[`strIngredient${i}`] !== "") && (_meal[`strIngredient${i}`] !== null) && (i <= 20));
 
 			this.setState((prevState,currProps) => {
 				let meal = currProps.meal[0];
