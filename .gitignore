@@ -1,0 +1,10 @@
+# File to restrict files from being sent to github
+
+# dependencides
+/node_modules
+
+# runtime
+package-lock.json
+
+# misc
+.DS_Store
