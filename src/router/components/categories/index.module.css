@@ -9,7 +9,7 @@ header.categoriesHeader {
 	margin:auto;
 	width:50vw;
 }
-header.categoriesHeader > div {
+header.categoriesHeader > a {
 	display:inline-block;
 }
 header.categoriesHeader > h2 {

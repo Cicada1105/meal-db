@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import { Button } from '../../../static_components';
+import { NavButton } from '../../../static_components';
 // Styling
 import styles from './style.module.css';
 // Images
@@ -16,7 +16,7 @@ function Row(props) {
 	return(
 		<div className={ styles.row }>
 			<div className={ styles.btnCont }>
-				<Button path={props.btn.path} text={props.btn.text} />
+				<NavButton path={props.btn.path} text={props.btn.text} />
 			</div>
 			<div className={ styles.cardCont }>
 				<img src={ props.imgNum === 1 ? cardBg1 : cardBg2 } className={ props.imgNum === 1 ? styles.cardBg1 : styles.cardBg2 } alt="*Description Card*" />

@@ -14,10 +14,10 @@ const store = createStore(mealDBReducer);
 class App extends React.Component {
 	render() {
 		return (
-				<div className="App">
-		    		<Background />
-		    		<MealDB />
-		    	</div>
+			<div className="App">
+	    		<Background />
+	    		<MealDB />
+	    	</div>
 		);
 	}
 }

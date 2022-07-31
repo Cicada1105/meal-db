@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAreas } from '../../../app_state/action_creators/getActions.jsx';
 
-import { Button, Tag } from '../../../static_components';
+import { NavButton, StyledButton } from '../../../static_components';
 import styles from './index.module.css';
 
 class Areas extends React.Component {
@@ -36,9 +36,9 @@ class Areas extends React.Component {
 		return(
 			<React.Fragment>
 				<header className={styles.areasHeader}>
-					<Tag path={() => this.props.history.goBack()}>Go Back</Tag>
+					<StyledButton onClickHandler={() => this.props.history.goBack()}>Go Back</StyledButton>
 					<h2><ins>Areas</ins></h2>
-					<Button text="Home" path="/Home" />
+					<NavButton text="Home" path="/Home" />
 				</header>
 				<div className={styles.bg}></div>
 				<div className={styles.areasSection}>
@@ -46,7 +46,7 @@ class Areas extends React.Component {
 					this.state.isLoading ?
 						<h3>Loading...</h3> :
 						this.state.areas.map((area, i) =>
-							<Button key={i} text={area["strArea"]} path={`/Areas/${area['strArea']}`} />
+							<NavButton key={i} text={area["strArea"]} path={`/Areas/${area['strArea']}`} />
 						)
 				}
 				</div>

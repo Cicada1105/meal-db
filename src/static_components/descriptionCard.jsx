@@ -13,7 +13,9 @@ function DescriptionCard(props) {
 	return(
 		<section className={styles.descrCard}>
 			<h2>{props.header}</h2>
-			<img src={props.imageURL} alt={props.header} onClick={() => navigateTo()} />
+			<a href={props.imageLink}>
+				<img src={props.imageURL} alt={props.header} onClick={() => navigateTo()} />
+			</a>
 			<div className={styles.cardBg}></div>
 			<p>{props.descr}</p> 
 		</section>

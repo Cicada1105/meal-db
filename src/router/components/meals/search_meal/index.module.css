@@ -3,7 +3,7 @@ header.searchMealHeader {
 	margin-top: 1.25rem;
 	width:50vw;
 }
-header.searchMealHeader > div {
+header.searchMealHeader > button {
 	display:inline-block;
 	float:left;
 }
@@ -12,17 +12,13 @@ header.searchMealHeader > h2 {
 	margin:auto;
 	width:fit-content;	
 }
-.searchBtn {
-	background: linear-gradient(25deg, rgb(46,113,166), rgb(153,213,249));
-	color:white;
+/*.searchBtn > button {*/
+input[type="text"] + button {
 	margin:auto;
 	margin-top:1.25rem;
-	font-weight: bold;
-	border-radius:5px;
-	padding: 8px 10px 9px 10px;
 	width:100px;
 }
-.searchBtn:hover {
+input[type="text"] + button:hover {
 	cursor:pointer;
 }
 input {
@@ -45,7 +41,7 @@ input {
 .searchCard {
 	position: relative;
 	height:10rem;
-	width:40rem;
+	width:45rem;
 	margin:auto;
 	margin-top:1.5rem;
 }
@@ -63,15 +59,13 @@ input {
 	display:inline-block;
 	z-index: 1;
 }
-.arrow {
-	position: relative;
-	background:linear-gradient(90deg, #2f71a6, #9ed4fa);
-	clip-path:polygon(0% 40%, 30% 40%, 100% 50%, 30% 60%, 0% 60%, 60% 50%);
-	display:inline-block;
-	float:right;
-	margin-right:1rem;
-	height:100%;
-	width:2rem;
+.searchCard > a {
+	position: absolute;
+	padding: 8px 10px 9px 10px;
+	width: 7rem;
+	right: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
 	z-index: 1;
 }
 .arrow:hover {

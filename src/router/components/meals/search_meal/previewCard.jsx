@@ -1,16 +1,10 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { NavButton } from '../../../../static_components/';
 
 import styles from './index.module.css';
 
 export const PreviewCard = ({ idMeal, strMeal, strTags, strCategory, strMealThumb }) => {
-	const history = useHistory();
-
-	const navigateTo = () => {
-		history.push("/Meals/" + idMeal);
-	}
-	
 	return (
 		<section className={styles.searchCard}>
 			<img src={`${strMealThumb}`} alt={strMeal} />
@@ -23,7 +17,7 @@ export const PreviewCard = ({ idMeal, strMeal, strTags, strCategory, strMealThum
 					<p name="tags">{strTags}</p>
 				}
 			</div>
-			<div className={styles.arrow} onClick={() => navigateTo()}></div>
+			<NavButton path={"/Meals/" + idMeal} text="View Recipe"></NavButton>
 			<div className={styles.bgCard}></div>
 		</section>
 	);

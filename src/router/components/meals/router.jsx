@@ -9,7 +9,7 @@ import SearchMeal from './search_meal/index.jsx';
 function MealsRouter() {
 	return (
 		<Switch>
-			<Route path="/Meals/Random" render={() => <RandomMeal /> } />
+			<Route path="/Meals/Random" render={(routerProps) => <RandomMeal {...routerProps} /> } />
 			<Route path="/Meals/Search" component={ SearchMeal } />
 			<Route path="/Meals/:mealID" render={(routerProps) => <Meal {...routerProps} /> } />
 		</Switch>

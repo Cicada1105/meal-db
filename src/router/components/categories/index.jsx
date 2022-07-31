@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getCategories } from '../../../app_state/action_creators/getActions.jsx';
 
-import { Button, DescriptionCard, Tag } from '../../../static_components';
+import { NavButton, StyledButton, DescriptionCard } from '../../../static_components';
 import styles from './index.module.css';
 
 class Categories extends React.Component {
@@ -36,9 +36,9 @@ class Categories extends React.Component {
 		return (
 			<React.Fragment>
 				<header className={styles.categoriesHeader}>
-					<Tag path={() => this.props.history.goBack()}>Go Back</Tag>
+					<StyledButton onClickHandler={() => this.props.history.goBack()}>Go Back</StyledButton>
 					<h2><ins>Categories</ins></h2>
-					<Button text="Home" path="/Home" />
+					<NavButton text="Home" path="/Home" />
 				</header>
 				<div className={styles.flexWrap}>
 				{

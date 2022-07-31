@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Tag } from './tag.jsx';
+import { StyledButton } from './button.jsx';
 
 import styles from './static_style.module.css';
 
@@ -49,15 +49,15 @@ const RecipeCard = (props) => {
 	return(
 		<section className={styles.recipeSection}>
 			<header className={styles.recipeHeader} ref={headerRef}>
-				<Tag path={() => previousPage()}>Go Back</Tag>
+				<StyledButton onClickHandler={() => previousPage()}>Go Back</StyledButton>
 				<h2><ins>{ props.strMeal }</ins></h2>
 				<span className={styles.category}>
-					Category: <span className={styles.link} onClick={() => navigateTo(`/Categories/${props.strCategory}`)}>{ props.strCategory }</span>
+					Category: <button className={styles.link} onClick={() => navigateTo(`/Categories/${props.strCategory}`)}>{ props.strCategory }</button>
 				</span>
 				<span className={styles.area}>
-					Area: <span className={styles.link} onClick={() => navigateTo(`/Areas/${props.strArea}`)}>{ props.strArea }</span>
+					Area: <button className={styles.link} onClick={() => navigateTo(`/Areas/${props.strArea}`)}>{ props.strArea }</button>
 				</span>
-				<Tag path={props.btnPath}>{ props.btnText }</Tag>
+				<StyledButton onClickHandler={() => typeof props.btnPath === "string" ? navigateTo(props.btnPath) : props.btnPath()}>{ props.btnText }</StyledButton>
 			</header>
 			<main ref={mainRef} className={styles.recipeCard}>
 				<figure onClick={() => window.open(`${props.strSource}`,"_blank")}>

@@ -7,7 +7,7 @@ import { filterName } from '../../../../app_state/action_creators/filterActions.
 import styles from './index.module.css';
 
 import { PreviewCard } from './previewCard.jsx';
-import { Tag } from '../../../../static_components';
+import { StyledButton } from '../../../../static_components';
 
 
 class SearchMeal extends React.Component {
@@ -54,11 +54,12 @@ class SearchMeal extends React.Component {
 		return (
 			<React.Fragment>
 				<header className={styles.searchMealHeader}>
-					<Tag path={() => this.props.history.goBack()}>Go Back</Tag>
+					<StyledButton onClickHandler={() => this.props.history.goBack()}>Go Back</StyledButton>
 					<h2><ins>Search Meal</ins></h2>
 				</header>
 				<input ref={this.inputRef} type="text" />
-				<div className={styles.searchBtn} onClick={this.handleClick}>Search</div>
+				{/*<div className={styles.searchBtn} onClick={this.handleClick}>Search</div>*/}
+				<StyledButton onClickHandler={this.handleClick}>Search</StyledButton>
 				{
 					this.state.isDoneSearching === undefined ||
 					(

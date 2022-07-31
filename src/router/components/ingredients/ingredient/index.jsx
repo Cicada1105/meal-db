@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { filterIngredient } from '../../../../app_state/action_creators/filterActions.jsx';
 
-import { Button, ImageCard, Tag } from '../../../../static_components';
+import { NavButton, StyledButton, ImageCard } from '../../../../static_components';
 import styles from './index.module.css';
 
 class Ingredient extends React.Component {
@@ -35,9 +35,9 @@ class Ingredient extends React.Component {
 		return(
 			<React.Fragment>
 				<header className={styles.ingredientHeader}>
-					<Tag path={() => this.props.history.goBack()}>Go Back</Tag>
+					<StyledButton onClickHandler={() => this.props.history.goBack()}>Go Back</StyledButton>
 					<h2><ins>{this.state.ingredientID}</ins></h2>
-					<Button text="Home" path="/Home" />
+					<NavButton text="Home" path="/Home" />
 				</header>
 				{
 					this.state.isLoading ?

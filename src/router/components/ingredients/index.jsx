@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getIngredients } from '../../../app_state/action_creators/getActions.jsx';
 
-import { Button, DescriptionCard, Tag } from '../../../static_components';
+import { NavButton, StyledButton, DescriptionCard } from '../../../static_components';
 import styles from './index.module.css';
 
 class Ingredients extends React.Component {
@@ -37,9 +37,9 @@ class Ingredients extends React.Component {
 		return (
 			<React.Fragment>
 				<header className={styles.ingredientsHeader}>
-					<Tag path={() => this.props.history.goBack()}>Go Back</Tag>
+					<StyledButton onClickHandler={() => this.props.history.goBack()}>Go Back</StyledButton>
 					<h2><ins>Ingredients</ins></h2>
-					<Button text="Home" path="/Home" />
+					<NavButton text="Home" path="/Home" />
 				</header>
 				<div className={styles.flexWrap}>
 				{

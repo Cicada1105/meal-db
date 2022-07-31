@@ -34,7 +34,8 @@ div.btnCont {
 	width:188px;
 	margin:0 2.5rem;
 }
-div.btnCont > div {
+/*div.btnCont > div {*/
+div.btnCont > a {
 	position:absolute;
 	top:50%;
 	width:131px;

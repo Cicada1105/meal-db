@@ -9,7 +9,7 @@ header.ingredientsHeader {
 	margin:auto;
 	width:50vw;
 }
-header.ingredientsHeader > div {
+header.ingredientsHeader > a {
 	display:inline-block;
 }
 header.ingredientsHeader > h2 {

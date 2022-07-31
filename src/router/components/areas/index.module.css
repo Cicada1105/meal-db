@@ -12,7 +12,7 @@ header.areasHeader {
 	margin:auto;
 	width:50vw;
 }
-header.areasHeader > div {
+header.areasHeader > a {
 	display:inline-block;
 }
 header.areasHeader > h2 {
@@ -31,7 +31,7 @@ header.areasHeader > h2 {
 	height:90vh;
 	z-index: 2;
 }
-.areasSection > div {
+.areasSection > a {
 	margin:2.5rem 5rem;
 	width:130px;
 }

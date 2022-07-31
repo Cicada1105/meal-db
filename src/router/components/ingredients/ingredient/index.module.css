@@ -10,7 +10,7 @@ header.ingredientHeader {
 	margin:auto;
 	width:50vw;
 }
-header.ingredientHeader > div {
+header.ingredientHeader > a {
 	display:inline-block;
 	position: absolute;
 	top: 20px;
