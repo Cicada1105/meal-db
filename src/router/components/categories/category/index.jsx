@@ -6,16 +6,9 @@ import { filterCategory } from '../../../../app_state/action_creators/filterActi
 import { NavButton, StyledButton, ImageCard } from '../../../../static_components';
 import styles from './index.module.css';
 
-function Category(props) {
-	// Extract out necessary values from props
-	const { 
-		filterCategory,
-		history,
-		meals,
-		match: { 
-			params: { categoryID }
-		}
-	} = props;
+function Category({ filterCategory, history, meals, match: { params } }) {
+	// Extract out necessary values from parameters
+	const { categoryID } = params;
 	// Local state
 	const [loading, setLoading] = useState(true);
 
