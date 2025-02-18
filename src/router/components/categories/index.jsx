@@ -20,7 +20,7 @@ function Categories({ categories, getCategories, history }){
 		}
 	},[getCategories]);
 /*
-	Was in previous class component. Appears to not 
+	Was in previous class component. Appears to not be necessary
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState["categories"].length === 0) {
 			this.setState(function() {
