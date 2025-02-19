@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { connect } from 'react-redux';
 import { getIngredients } from '../../../app_state/action_creators/getActions.jsx';
@@ -6,19 +6,21 @@ import { getIngredients } from '../../../app_state/action_creators/getActions.js
 import { NavButton, StyledButton, DescriptionCard } from '../../../static_components';
 import styles from './index.module.css';
 
-class Ingredients extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isLoading: true,
-			ingredients: []
-		}
-	}
-	componentDidMount() {
+function Ingredients({ ingredients, getIngredients, history }) {
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
 		fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
 			.then(response => response.json())
-			.then(data => this.props.getIngredients(data));
-	}
+			.then(data => getIngredients(data))
+			.finally(() => setLoading(false));
+
+		return () => {
+			getIngredients({meals: []});
+		}
+	},[getIngredients]);
+/*
+	Was in previous class component. Appears to not be necessary
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState["ingredients"].length === 0) {
 			this.setState(function() {
@@ -29,43 +31,38 @@ class Ingredients extends React.Component {
 			})
 		}
 	}
-	componentWillUnmount() {
-		this.props.getIngredients({meals: []})
-	}
-	
-	render() {
-		return (
-			<React.Fragment>
-				<header className={styles.ingredientsHeader}>
-					<StyledButton onClickHandler={() => this.props.history.goBack()}>Go Back</StyledButton>
-					<h2><ins>Ingredients</ins></h2>
-					<NavButton text="Home" path="/Home" />
-				</header>
-				<div className={styles.flexWrap}>
-				{
-					this.state.isLoading ?
-						<>
-							<DescriptionCard header="Loading..." />
-							<DescriptionCard header="Loading..." />
-							<DescriptionCard header="Loading..." />
-							<DescriptionCard header="Loading..." />
-						</> : 
-						this.state.ingredients.map(meal => 
-							meal["strDescription"] === null || meal["strDescription"] === "" ||
-							<DescriptionCard key={meal.idIngredient} header={meal.strIngredient}
-							 	imageURL={`https://www.themealdb.com/images/ingredients/${meal.strIngredient}-Small.png`}
-							 	imageLink={`Ingredients/${meal.strIngredient}`} descr={meal.strDescription} />
-						)
-				}
-				</div>
-			</React.Fragment>
-		);
-	}
+*/
+	return (
+		<React.Fragment>
+			<header className={styles.ingredientsHeader}>
+				<StyledButton onClickHandler={() => history.goBack()}>Go Back</StyledButton>
+				<h2><ins>Ingredients</ins></h2>
+				<NavButton text="Home" path="/Home" />
+			</header>
+			<div className={styles.flexWrap}>
+			{
+				loading ?
+					<>
+						<DescriptionCard header="Loading..." />
+						<DescriptionCard header="Loading..." />
+						<DescriptionCard header="Loading..." />
+						<DescriptionCard header="Loading..." />
+					</> : 
+					ingredients.map(meal => 
+						meal["strDescription"] === null || meal["strDescription"] === "" ||
+						<DescriptionCard key={meal.idIngredient} header={meal.strIngredient}
+						 	imageURL={`https://www.themealdb.com/images/ingredients/${meal.strIngredient}-Small.png`}
+						 	imageLink={`Ingredients/${meal.strIngredient}`} descr={meal.strDescription} />
+					)
+			}
+			</div>
+		</React.Fragment>
+	);
 }
 
 const mapStateToProps = state => {
 	return {
-		meals: state.getMealsReducer
+		ingredients: state.getMealsReducer
 	}
 }
 
