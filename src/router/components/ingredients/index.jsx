@@ -52,7 +52,7 @@ function Ingredients({ ingredients, getIngredients, history }) {
 						meal["strDescription"] === null || meal["strDescription"] === "" ||
 						<DescriptionCard key={meal.idIngredient} header={meal.strIngredient}
 						 	imageURL={`https://www.themealdb.com/images/ingredients/${meal.strIngredient}-Small.png`}
-						 	imageLink={`Ingredients/${meal.strIngredient}`} descr={meal.strDescription} />
+						 	imageLink={`/Ingredients/${meal.strIngredient}`} descr={meal.strDescription} />
 					)
 			}
 			</div>

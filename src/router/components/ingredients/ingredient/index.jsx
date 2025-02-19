@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { connect } from 'react-redux';
 import { filterIngredient } from '../../../../app_state/action_creators/filterActions.jsx';
@@ -6,65 +6,61 @@ import { filterIngredient } from '../../../../app_state/action_creators/filterAc
 import { NavButton, StyledButton, ImageCard } from '../../../../static_components';
 import styles from './index.module.css';
 
-class Ingredient extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isLoading: false,
-			ingredientID: props.match.params.ingredientID
-		}
-	}
-	componentDidMount() {
-		this.setState(() => ({ isLoading: true }));
+function Ingredient({ meals, filterIngredient, history, match: { params } }) {
+	// Extract out necessary values from parameters
+	const { ingredientID } = params;
 
-		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${this.state.ingredientID}`)
+	// Local state
+	const [loading, setLoading] = useState(true);
+
+	const emptyLoadingPath = {
+		from:"",
+		to:""
+	}
+	
+	useEffect(() => {
+		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredientID}`)
 			.then(response => response.json())
-			.then(data => {
-				data["meals"] !== null ? this.props.filterIngredient(data) : this.props.filterIngredient({meals:[]});
-				this.setState(() => ({ isLoading: false }));
-			});
-	}
-	componentWillUnmount() {
-		this.props.filterIngredient({meals: []});
-	}
-	render() {
-		const emptyLoadingPath = {
-			from:"",
-			to:""
+			.then(data => filterIngredient(data))
+			.finally(() => setLoading(false));
+
+		return () => {
+			filterIngredient({meals: []});
 		}
-		return(
-			<React.Fragment>
-				<header className={styles.ingredientHeader}>
-					<StyledButton onClickHandler={() => this.props.history.goBack()}>Go Back</StyledButton>
-					<h2><ins>{this.state.ingredientID}</ins></h2>
-					<NavButton text="Home" path="/Home" />
-				</header>
-				{
-					this.state.isLoading ?
+	},[filterIngredient, ingredientID]);
+
+	return (
+		<React.Fragment>
+			<header className={styles.ingredientHeader}>
+				<StyledButton onClickHandler={() => history.goBack()}>Go Back</StyledButton>
+				<h2><ins>{ingredientID}</ins></h2>
+				<NavButton text="Home" path="/Home" />
+			</header>
+			{
+				loading ?
+					<div className={styles.flexWrap}>
+						<ImageCard text="Loading..." location={emptyLoadingPath} />
+						<ImageCard text="Loading..." location={emptyLoadingPath} />
+						<ImageCard text="Loading..." location={emptyLoadingPath} />
+						<ImageCard text="Loading..." location={emptyLoadingPath} />
+					</div> : (
+						meals.length === 0 ?
+						<h3>Foods with "{ingredientID}" as an ingredient are not available</h3>
+						:
 						<div className={styles.flexWrap}>
-							<ImageCard text="Loading..." location={emptyLoadingPath} />
-							<ImageCard text="Loading..." location={emptyLoadingPath} />
-							<ImageCard text="Loading..." location={emptyLoadingPath} />
-							<ImageCard text="Loading..." location={emptyLoadingPath} />
-						</div> : (
-							this.props.meals.length === 0 ?
-							<h3>Foods with "{this.state.ingredientID}" as an ingredient are not available</h3>
-							:
-							<div className={styles.flexWrap}>
-							{
-								this.props.meals.map(meal => 
-									<ImageCard key={meal.idMeal} location={{
-										from: `/Ingredients/${this.state.ingredientID}`,
-										to: `/Meals/${meal.idMeal}`
-									}} text={meal.strMeal} imageURL={meal.strMealThumb} />
-								)
-							}
-							</div>
-						)
-				}
-			</React.Fragment>
-		)
-	}
+						{
+							meals.map(meal => 
+								<ImageCard key={meal.idMeal} location={{
+									from: `/Ingredients/${ingredientID}`,
+									to: `/Meals/${meal.idMeal}`
+								}} text={meal.strMeal} imageURL={meal.strMealThumb} />
+							)
+						}
+						</div>
+					)
+			}
+		</React.Fragment>
+	);
 }
 
 const mapStateToProps = state => {
