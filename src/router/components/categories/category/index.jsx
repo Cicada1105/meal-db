@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { filterCategory } from '../../../../app_state/action_creators/filterActions.jsx';
 
-import { NavButton, StyledButton, ImageCard } from '../../../../static_components';
+import { NavButton, StyledButton, ImageCard, ImageLoadingCards } from '../../../../static_components';
 import styles from './index.module.css';
 
 function Category({ filterCategory, history, meals, match: { params } }) {
@@ -11,11 +11,6 @@ function Category({ filterCategory, history, meals, match: { params } }) {
 	const { categoryID } = params;
 	// Local state
 	const [loading, setLoading] = useState(true);
-
-	const emptyLoadingPath = {
-		from:"",
-		to:""
-	}
 
 	useEffect(() => {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryID}`)
@@ -38,12 +33,7 @@ function Category({ filterCategory, history, meals, match: { params } }) {
 			<div className={styles.flexWrap}>
 			{
 				(loading || meals.length === 0) ?
-					<>
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-					</> :
+					<ImageLoadingCards /> :
 					meals.map((meal,i) =>
 						<ImageCard key={i} location={{
 							from:`/Categories/${categoryID}`,

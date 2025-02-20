@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getCategories } from '../../../app_state/action_creators/getActions.jsx';
 
-import { NavButton, StyledButton, DescriptionCard } from '../../../static_components';
+import { NavButton, StyledButton, DescriptionCard, DescriptionLoadingCards } from '../../../static_components';
 import styles from './index.module.css';
 
 function Categories({ categories, getCategories, history }){
@@ -42,12 +42,7 @@ function Categories({ categories, getCategories, history }){
 			<div className={styles.flexWrap}>
 			{
 				loading ?
-					<>
-						<DescriptionCard header="Loading..." />
-						<DescriptionCard header="Loading..." />
-						<DescriptionCard header="Loading..." />
-						<DescriptionCard header="Loading..." />
-					</> :
+					<DescriptionLoadingCards /> :
 					categories.map(category => 
 						<DescriptionCard key={category["idCategory"]} header={category["strCategory"]} 
 							imageURL={category["strCategoryThumb"]} imageLink={`/Categories/${category['strCategory']}`}

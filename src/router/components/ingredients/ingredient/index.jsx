@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { filterIngredient } from '../../../../app_state/action_creators/filterActions.jsx';
 
-import { NavButton, StyledButton, ImageCard } from '../../../../static_components';
+import { NavButton, StyledButton, ImageCard, ImageLoadingCards } from '../../../../static_components';
 import styles from './index.module.css';
 
 function Ingredient({ meals, filterIngredient, history, match: { params } }) {
@@ -12,11 +12,6 @@ function Ingredient({ meals, filterIngredient, history, match: { params } }) {
 
 	// Local state
 	const [loading, setLoading] = useState(true);
-
-	const emptyLoadingPath = {
-		from:"",
-		to:""
-	}
 	
 	useEffect(() => {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredientID}`)
@@ -39,10 +34,7 @@ function Ingredient({ meals, filterIngredient, history, match: { params } }) {
 			{
 				loading ?
 					<div className={styles.flexWrap}>
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
+						<ImageLoadingCards />
 					</div> : (
 						meals.length === 0 ?
 						<h3>Foods with "{ingredientID}" as an ingredient are not available</h3>

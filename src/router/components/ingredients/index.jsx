@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getIngredients } from '../../../app_state/action_creators/getActions.jsx';
 
-import { NavButton, StyledButton, DescriptionCard } from '../../../static_components';
+import { NavButton, StyledButton, DescriptionCard, DescriptionLoadingCards } from '../../../static_components';
 import styles from './index.module.css';
 
 function Ingredients({ ingredients, getIngredients, history }) {
@@ -42,12 +42,7 @@ function Ingredients({ ingredients, getIngredients, history }) {
 			<div className={styles.flexWrap}>
 			{
 				loading ?
-					<>
-						<DescriptionCard header="Loading..." />
-						<DescriptionCard header="Loading..." />
-						<DescriptionCard header="Loading..." />
-						<DescriptionCard header="Loading..." />
-					</> : 
+					<DescriptionLoadingCards /> : 
 					ingredients.map(meal => 
 						meal["strDescription"] === null || meal["strDescription"] === "" ||
 						<DescriptionCard key={meal.idIngredient} header={meal.strIngredient}

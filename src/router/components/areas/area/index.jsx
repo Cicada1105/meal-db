@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux'
 import { filterArea } from '../../../../app_state/action_creators/filterActions.jsx';
 
-import { NavButton, StyledButton, ImageCard } from '../../../../static_components';
+import { NavButton, StyledButton, ImageCard, ImageLoadingCards } from '../../../../static_components';
 import styles from './index.module.css';
 
 function Area({ meals, filterArea, history, match: { params } }) {
@@ -11,11 +11,6 @@ function Area({ meals, filterArea, history, match: { params } }) {
 	const { areaID } = params;
 	// Local state
 	const [loading, setLoading] = useState(true);
-
-	const emptyLoadingPath = {
-		from:"",
-		to:""
-	}
 
 	useEffect(() => {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areaID}`)
@@ -38,12 +33,7 @@ function Area({ meals, filterArea, history, match: { params } }) {
 			<div className={styles.flexWrap}>
 			{
 				loading ?
-					<>
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-						<ImageCard text="Loading..." location={emptyLoadingPath} />
-					</> :
+					<ImageLoadingCards /> :
 					meals.map(meal =>
 						<ImageCard key={meal.idMeal} location={{
 							from: `/Areas/${areaID}`,
