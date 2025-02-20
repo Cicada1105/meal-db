@@ -24,18 +24,16 @@ function Meal({ meal, filterID, match: { params } }) {
 	},[filterID,mealID]);
 
 	useEffect(() => {
-		console.log(meal)
 		// Store retrieved meals into local state for formatting 
 		if (meal && Object.keys(meal).length > 0) {
 			let i = 1;
-			let _meal = meal;
 			let formattedStr = "";
 			let isEmptyStr;
 			let ingredients = [];
 			let ingredient, measurement;
 			do {
-				ingredient = _meal[`strIngredient${i}`];
-				measurement = _meal[`strMeasure${i}`];
+				ingredient = meal[`strIngredient${i}`];
+				measurement = meal[`strMeasure${i}`];
 
 				/*
 					measurement?.trim()
@@ -49,10 +47,9 @@ function Meal({ meal, filterID, match: { params } }) {
 				ingredients.push(formattedStr);
 				i++;
 
-			} while(_meal[`strIngredient${i}`] && (i <= 20));
+			} while(meal[`strIngredient${i}`] && (i <= 20));
 
 			setMeal(() => ({
-				..._meal,
 				strMeal: meal["strMeal"],
 				strCategory: meal["strCategory"],
 				strArea: meal["strArea"],

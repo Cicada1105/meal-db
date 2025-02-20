@@ -1,74 +1,75 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { connect } from 'react-redux';
 import { getRandomMeal } from '../../../../app_state/action_creators/getActions.jsx';
 
 import { RecipeCard } from '../../../../static_components';
 
-class RandomMeal extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isLoading: true,
-			meal: {
-				strMeal: "",
-				strCategory: "",
-				strArea: "",
-				strInstructions: "",
-				strMealThumb: "",
-				strTags: "",
-				strYoutube: "",
-				strIngredients: [],
-				strSource: ""
-			}
-		};
-	}
-	componentDidMount() {
+function RandomMeal({ meal, getRandomMeal }) {
+	const [loading, setLoading] = useState(true);
+	const [_meal, setMeal] = useState({});
+
+	useEffect(() => {
 		fetch("https://www.themealdb.com/api/json/v1/1/random.php")
 			.then(response => response.json())
-			.then(data => this.props.getRandomMeal(data));
-	}
-	componentDidUpdate(prevProps,prevState) {
-		if (prevState.meal["strMeal"].localeCompare("") === 0) {
+			.then(data => getRandomMeal(data))
+			.finally(() => setLoading(false));
+
+		return () => {
+			getRandomMeal({meals: []});
+		}
+	},[getRandomMeal]);
+
+	useEffect(() => {
+		// Store retrieved meals into local state for formatting 
+		if (meal && Object.keys(meal).length > 0) {
 			let i = 1;
 			let formattedStr = "";
 			let isEmptyStr;
 			let ingredients = [];
+			let ingredient, measurement;
 			do {
-				isEmptyStr = (this.props.meal[`strMeasure${i}`] === "") || (this.props.meal[`strMeasure${i}`] === " ");
-				formattedStr = this.props.meal[`strIngredient${i}`] + (isEmptyStr ? "" : ` - ${this.props.meal[`strMeasure${i}`]}`);
+				ingredient = meal[`strIngredient${i}`];
+				measurement = meal[`strMeasure${i}`];
+
+				/*
+					measurement?.trim()
+						If measurement is '', ' ', null:
+							measurement becomes '', '', undefined respectively
+					!measurement?.trim()
+						measurement becomes false -> isEmptyStr
+				*/
+				isEmptyStr = !measurement?.trim();
+				formattedStr = ingredient + (isEmptyStr ? "" : ` - ${measurement}`);
 				ingredients.push(formattedStr);
 				i++;
-			} while((this.props.meal[`strIngredient${i}`] !== "") && (this.props.meal[`strIngredient${i}`] !== null) && (i <= 20));
+			} while(meal[`strIngredient${i}`] && (i <= 20));
 
-			this.setState(() => ({
-				isLoading: false,
-				meal: {
-					strMeal: this.props.meal["strMeal"],
-					strCategory: this.props.meal["strCategory"],
-					strArea: this.props.meal["strArea"],
-					strInstructions: this.props.meal["strInstructions"],
-					strMealThumb: this.props.meal["strMealThumb"],
-					strTags: this.props.meal["strTags"],
-					strYoutube: this.props.meal["strYoutube"],
-					strIngredients: [...ingredients],
-					strSource: this.props.meal["strSource"]
-				}
+			setMeal(() => ({
+				strMeal: meal["strMeal"],
+				strCategory: meal["strCategory"],
+				strArea: meal["strArea"],
+				strInstructions: meal["strInstructions"],
+				strMealThumb: meal["strMealThumb"],
+				strTags: meal["strTags"],
+				strYoutube: meal["strYoutube"],
+				strIngredients: [...ingredients],
+				strSource: meal["strSource"]
 			}));
 		}
-	}
-	render() {
-		return(
-			<React.Fragment>
-			{
-				this.state.isLoading ?
-					<h2>Loading...</h2> :
-					<RecipeCard {...this.state.meal} btnText="Random" btnPath={() => document.location.reload()} />
-			}
-			</React.Fragment>
-		);
-	}
+	},[meal]);
+
+	return (
+		<React.Fragment>
+		{
+			loading ?
+				<h2>Loading...</h2> :
+				<RecipeCard {..._meal} btnText="Random" btnPath={() => document.location.reload()} />
+		}
+		</React.Fragment>
+	);
 }
+
 const mapStateToProps = state => {
 	return {meal: state.getMealsReducer[0]}
 }
