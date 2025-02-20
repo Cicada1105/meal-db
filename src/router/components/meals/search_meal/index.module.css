@@ -12,13 +12,12 @@ header.searchMealHeader > h2 {
 	margin:auto;
 	width:fit-content;	
 }
-/*.searchBtn > button {*/
-input[type="text"] + button {
+search {
 	margin:auto;
 	margin-top:1.25rem;
 	width:100px;
 }
-input[type="text"] + button:hover {
+search > button:hover {
 	cursor:pointer;
 }
 input {
