@@ -16,7 +16,7 @@ function SearchMeal({ meals, filterName, history }) {
 		return () => {
 			filterName({meals: []});
 		}
-	},[]);
+	},[filterName]);
 
 	const handleClick = () => {
 		// Update loading state
