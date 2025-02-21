@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router';
 
 import { connect } from 'react-redux';
 import { filterCategory } from '../../../../app_state/action_creators/filterActions.jsx';
@@ -6,11 +7,13 @@ import { filterCategory } from '../../../../app_state/action_creators/filterActi
 import { NavButton, StyledButton, ImageCard, ImageLoadingCards } from '../../../../static_components';
 import styles from './index.module.css';
 
-function Category({ filterCategory, history, meals, match: { params } }) {
-	// Extract out necessary values from parameters
-	const { categoryID } = params;
+function Category({ filterCategory, meals }) {
 	// Local state
 	const [loading, setLoading] = useState(true);
+
+	// Extract out necessary values from parameters
+	const { categoryID } = useParams();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryID}`)
@@ -26,7 +29,7 @@ function Category({ filterCategory, history, meals, match: { params } }) {
 	return(
 		<React.Fragment>
 			<header className={styles.categoryHeader}>
-				<StyledButton onClickHandler={() => history.goBack()}>Go Back</StyledButton>
+				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
 				<h2><ins>{ categoryID }</ins></h2>
 				<NavButton text="Home" path="/Home" />
 			</header>

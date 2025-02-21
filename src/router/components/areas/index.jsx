@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { connect } from 'react-redux';
 import { getAreas } from '../../../app_state/action_creators/getActions.jsx';
@@ -6,8 +7,9 @@ import { getAreas } from '../../../app_state/action_creators/getActions.jsx';
 import { NavButton, StyledButton } from '../../../static_components';
 import styles from './index.module.css';
 
-function Areas({ areas, getAreas, history }) {
+function Areas({ areas, getAreas }) {
 	const [loading, setLoading] = useState(true);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
@@ -35,7 +37,7 @@ function Areas({ areas, getAreas, history }) {
 	return (
 		<React.Fragment>
 			<header className={styles.areasHeader}>
-				<StyledButton onClickHandler={() => history.goBack()}>Go Back</StyledButton>
+				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
 				<h2><ins>Areas</ins></h2>
 				<NavButton text="Home" path="/Home" />
 			</header>

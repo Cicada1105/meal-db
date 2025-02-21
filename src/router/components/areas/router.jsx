@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router';
 
 // Components 
 import Areas from './index.jsx';
@@ -7,10 +7,10 @@ import Area from './area/index.jsx';
 
 function AreasRouter() {
 	return (
-		<Switch>
-			<Route exact path="/Areas" render={(routeProps) => <Areas {...routeProps}/>} />
-			<Route path="/Areas/:areaID" render={(routeProps) => <Area {...routeProps}/>} />
-		</Switch>
+		<Route path='Areas'>
+			<Route index element={ <Areas /> } />
+			<Route path=":areaID" element={ <Area /> } />
+		</Route>
 	)
 }
 

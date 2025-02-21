@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router';
 
 // Components 
 import Ingredients from './index.jsx';
@@ -7,10 +7,10 @@ import Ingredient from './ingredient/index.jsx';
 
 function IngredientsRouter() {
 	return (
-		<Switch>
-			<Route exact path="/Ingredients" render={(routeProps) => <Ingredients {...routeProps}/> } />
-			<Route path="/Ingredients/:ingredientID" render={(routeProps) => <Ingredient {...routeProps}/>} />
-		</Switch>
+		<Route path='Ingredients'>
+			<Route index element={ <Ingredients /> } />
+			<Route path=":ingredientID" element={ <Ingredient />} />
+		</Route>
 	)
 }
 

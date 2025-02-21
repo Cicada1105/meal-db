@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router';
 
 // Components 
 import Meal from './index.jsx';
@@ -8,11 +8,11 @@ import SearchMeal from './search_meal/index.jsx';
 
 function MealsRouter() {
 	return (
-		<Switch>
-			<Route path="/Meals/Random" render={(routerProps) => <RandomMeal {...routerProps} /> } />
-			<Route path="/Meals/Search" component={ SearchMeal } />
-			<Route path="/Meals/:mealID" render={(routerProps) => <Meal {...routerProps} /> } />
-		</Switch>
+		<Route path='Meals'>
+			<Route path="Random" element={ <RandomMeal /> } />
+			<Route path="Search" element={ <SearchMeal /> } />
+			<Route path=":mealID" element={ <Meal /> } />
+		</Route>
 	)
 }
 

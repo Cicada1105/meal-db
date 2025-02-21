@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter, Routes } from 'react-router';
 
 // Style
 import style from './home.module.css';
@@ -9,9 +9,11 @@ import { MealDBRoutes } from './router.jsx';
 function MealDB() {
 	return(
 		<div className={ style.pgContent }>
-			<Router>
-				<MealDBRoutes />
-			</Router>
+			<BrowserRouter>
+				<Routes>
+					{MealDBRoutes()}
+				</Routes>
+			</BrowserRouter>
 		</div>
 	);
 }

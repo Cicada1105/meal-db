@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { connect } from 'react-redux';
 import { getIngredients } from '../../../app_state/action_creators/getActions.jsx';
@@ -6,8 +7,9 @@ import { getIngredients } from '../../../app_state/action_creators/getActions.js
 import { NavButton, StyledButton, DescriptionCard, DescriptionLoadingCards } from '../../../static_components';
 import styles from './index.module.css';
 
-function Ingredients({ ingredients, getIngredients, history }) {
+function Ingredients({ ingredients, getIngredients }) {
 	const [loading, setLoading] = useState(true);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
@@ -35,7 +37,7 @@ function Ingredients({ ingredients, getIngredients, history }) {
 	return (
 		<React.Fragment>
 			<header className={styles.ingredientsHeader}>
-				<StyledButton onClickHandler={() => history.goBack()}>Go Back</StyledButton>
+				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
 				<h2><ins>Ingredients</ins></h2>
 				<NavButton text="Home" path="/Home" />
 			</header>

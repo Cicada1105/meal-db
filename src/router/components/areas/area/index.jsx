@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router';
 
 import { connect } from 'react-redux'
 import { filterArea } from '../../../../app_state/action_creators/filterActions.jsx';
@@ -6,11 +7,13 @@ import { filterArea } from '../../../../app_state/action_creators/filterActions.
 import { NavButton, StyledButton, ImageCard, ImageLoadingCards } from '../../../../static_components';
 import styles from './index.module.css';
 
-function Area({ meals, filterArea, history, match: { params } }) {
-	// Extract out necessary values from parameters
-	const { areaID } = params;
+function Area({ meals, filterArea }) {
 	// Local state
 	const [loading, setLoading] = useState(true);
+
+	// Extract out necessary values from parameters
+	const { areaID } = useParams();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areaID}`)
@@ -26,7 +29,7 @@ function Area({ meals, filterArea, history, match: { params } }) {
 	return (
 		<React.Fragment>
 			<header className={styles.areaHeader}>
-				<StyledButton onClickHandler={() => history.goBack()}>Go Back</StyledButton>
+				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
 				<h2><ins>{ areaID }</ins></h2>
 				<NavButton text="Home" path="/Home" />
 			</header>

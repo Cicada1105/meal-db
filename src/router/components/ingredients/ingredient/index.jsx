@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router';
 
 import { connect } from 'react-redux';
 import { filterIngredient } from '../../../../app_state/action_creators/filterActions.jsx';
@@ -6,12 +7,13 @@ import { filterIngredient } from '../../../../app_state/action_creators/filterAc
 import { NavButton, StyledButton, ImageCard, ImageLoadingCards } from '../../../../static_components';
 import styles from './index.module.css';
 
-function Ingredient({ meals, filterIngredient, history, match: { params } }) {
-	// Extract out necessary values from parameters
-	const { ingredientID } = params;
-
+function Ingredient({ meals, filterIngredient }) {
 	// Local state
 	const [loading, setLoading] = useState(true);
+
+	// Extract out necessary values from parameters
+	const { ingredientID } = useParams();
+	const navigate = useNavigate();
 	
 	useEffect(() => {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredientID}`)
@@ -27,7 +29,7 @@ function Ingredient({ meals, filterIngredient, history, match: { params } }) {
 	return (
 		<React.Fragment>
 			<header className={styles.ingredientHeader}>
-				<StyledButton onClickHandler={() => history.goBack()}>Go Back</StyledButton>
+				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
 				<h2><ins>{ingredientID}</ins></h2>
 				<NavButton text="Home" path="/Home" />
 			</header>

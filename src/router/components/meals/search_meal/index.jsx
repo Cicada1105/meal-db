@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router';
 
 import { connect } from 'react-redux';
 import { filterName } from '../../../../app_state/action_creators/filterActions.jsx';
@@ -8,9 +9,10 @@ import styles from './index.module.css';
 import { PreviewCard } from './previewCard.jsx';
 import { StyledButton } from '../../../../static_components';
 
-function SearchMeal({ meals, filterName, history }) {
+function SearchMeal({ meals, filterName }) {
 	const [doneSearching, setDoneSearching] = useState(undefined);
 	const inputRef = useRef(null);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		return () => {
@@ -39,7 +41,7 @@ function SearchMeal({ meals, filterName, history }) {
 	return (
 		<React.Fragment>
 			<header className={styles.searchMealHeader}>
-				<StyledButton onClickHandler={() => history.goBack()}>Go Back</StyledButton>
+				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
 				<h2><ins>Search Meal</ins></h2>
 			</header>
 			<input ref={inputRef} type="text" />

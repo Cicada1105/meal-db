@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import { StyledButton } from './button.jsx';
 
 import styles from './static_style.module.css';
 
 const RecipeCard = (props) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	
 	const headerRef = useRef(null);
 	const mainRef = useRef(null);
@@ -15,17 +15,6 @@ const RecipeCard = (props) => {
 	const instructionsRef = useRef(null);
 	const footerRef = useRef(null);
 	const bgCardRef = useRef(null);
-
-	function navigateTo(pathIn) {
-		history.push(pathIn);
-	}
-	function previousPage() {
-		/*if (history.location.state)
-			history.push(history.location.state["previousRoute"]);
-		else
-			history.goBack();*/
-		history.goBack();
-	}
 
 	useEffect(() => {
 		const headerHeight = headerRef.current.offsetHeight;
@@ -49,15 +38,15 @@ const RecipeCard = (props) => {
 	return(
 		<section className={styles.recipeSection}>
 			<header className={styles.recipeHeader} ref={headerRef}>
-				<StyledButton onClickHandler={() => previousPage()}>Go Back</StyledButton>
+				<StyledButton onClickHandler={ () => navigate(-1) }>Go Back</StyledButton>
 				<h2><ins>{ props.strMeal }</ins></h2>
 				<span className={styles.category}>
-					Category: <button className={styles.link} onClick={() => navigateTo(`/Categories/${props.strCategory}`)}>{ props.strCategory }</button>
+					Category: <button className={styles.link} onClick={() => navigate(`/Categories/${props.strCategory}`)}>{ props.strCategory }</button>
 				</span>
 				<span className={styles.area}>
-					Area: <button className={styles.link} onClick={() => navigateTo(`/Areas/${props.strArea}`)}>{ props.strArea }</button>
+					Area: <button className={styles.link} onClick={() => navigate(`/Areas/${props.strArea}`)}>{ props.strArea }</button>
 				</span>
-				<StyledButton onClickHandler={() => typeof props.btnPath === "string" ? navigateTo(props.btnPath) : props.btnPath()}>{ props.btnText }</StyledButton>
+				<StyledButton onClickHandler={() => typeof props.btnPath === "string" ? navigate(props.btnPath) : props.btnPath()}>{ props.btnText }</StyledButton>
 			</header>
 			<main ref={mainRef} className={styles.recipeCard}>
 				<figure onClick={() => window.open(`${props.strSource}`,"_blank")}>

@@ -1,17 +1,15 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router';
 
 // Components 
 import { Home } from './index.jsx';
 
 function HomeRouter() {
 	return (
-		<Switch>
-			<Route exact path="/">
-				<Redirect to="/Home" />
-			</Route>
-			<Route path="/Home" render={() => <Home /> } />
-		</Switch>
+		<Route path=''>
+			<Route index element={ <Navigate to="/Home" /> } />
+			<Route path="/Home" element={ <Home /> } />
+		</Route>
 	)
 }
 

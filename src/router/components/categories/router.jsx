@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router';
 
 // Components 
 import Categories from './index.jsx';
@@ -7,10 +7,10 @@ import Category from './category/index.jsx';
 
 function CategoriesRouter() {
 	return (
-		<Switch>
-			<Route exact path="/Categories" render={(routeProps) => <Categories {...routeProps}/> } />
-			<Route path="/Categories/:categoryID" render={(routeProps) => <Category {...routeProps}/>} />
-		</Switch>
+		<Route path='Categories'>
+			<Route index element={ <Categories /> } />
+			<Route path=":categoryID" element={ <Category /> } />
+		</Route>
 	)
 }
 

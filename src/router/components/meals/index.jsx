@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
 import { connect } from 'react-redux';
 import { filterID } from '../../../app_state/action_creators/filterActions.jsx';
 
 import { RecipeCard } from '../../../static_components';
 
-function Meal({ meal, filterID, match: { params } }) {
+function Meal({ meal, filterID }) {
 	// Extract out necessary values from parameters
-	const { mealID } = params;
+	const { mealID } = useParams();
 	// Local state
 	const [loading, setLoading] = useState(true);
 	const [_meal, setMeal] = useState({});

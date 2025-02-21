@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 //import { Tag } from './tag.jsx';
 import styles from './static_style.module.css';
 
