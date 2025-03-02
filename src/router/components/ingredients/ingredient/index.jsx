@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 
 import { connect } from 'react-redux';
 import { filterIngredient } from '../../../../app_state/action_creators/filterActions.jsx';
 
-import { NavButton, StyledButton, ImageCard, ImageLoadingCards } from '../../../../static_components';
+import { PageHeader, ImageCard, ImageLoadingCards } from '../../../../static_components';
 import styles from './index.module.css';
 
 function Ingredient({ meals, filterIngredient }) {
@@ -13,7 +13,6 @@ function Ingredient({ meals, filterIngredient }) {
 
 	// Extract out necessary values from parameters
 	const { ingredientID } = useParams();
-	const navigate = useNavigate();
 	
 	useEffect(() => {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredientID}`)
@@ -28,11 +27,7 @@ function Ingredient({ meals, filterIngredient }) {
 
 	return (
 		<React.Fragment>
-			<header className={styles.ingredientHeader}>
-				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2>{ingredientID}</h2>
-				<NavButton text="Home" path="/Home" />
-			</header>
+			<PageHeader>{ingredientID}</PageHeader>
 			{
 				loading ?
 					<div className={styles.flexWrap}>

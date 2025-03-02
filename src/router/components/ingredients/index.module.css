@@ -5,19 +5,6 @@
 	margin:auto;
 	width:80vw;
 }
-header.ingredientsHeader {
-	margin:auto;
-	width:50vw;
-}
-header.ingredientsHeader > a {
-	display:inline-block;
-}
-header.ingredientsHeader > h2 {
-	text-decoration: underline;
-	display:inline-block;
-	margin-left:11rem;
-	margin-right:11rem;
-}
 .flexWrap > section {
 	margin:3rem;
 }

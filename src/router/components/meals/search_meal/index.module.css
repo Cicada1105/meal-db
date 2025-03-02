@@ -1,18 +1,3 @@
-header.searchMealHeader {
-	margin:auto;
-	margin-top: 1.25rem;
-	width:50vw;
-}
-header.searchMealHeader > button {
-	display:inline-block;
-	float:left;
-}
-header.searchMealHeader > h2 {
-	text-decoration: underline;
-	display:block;
-	margin:auto;
-	width:fit-content;	
-}
 search {
 	margin:auto;
 	margin-top:1.25rem;

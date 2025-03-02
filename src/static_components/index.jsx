@@ -6,6 +6,7 @@ import { DescriptionCard } from './descriptionCard.jsx';
 import { DescriptionLoadingCards } from './description-loading-cards';
 import { ImageCard } from './imageCard.jsx';
 import { ImageLoadingCards } from './image-loading-cards';
+import { PageHeader } from './page-header';
 import { RecipeCard } from './recipeCard.jsx';
 import { Tag } from './tag.jsx';
 
@@ -14,5 +15,5 @@ export {
 	NavButton, StyledButton,
 	DescriptionCard, DescriptionLoadingCards,
 	ImageCard, ImageLoadingCards,
-	RecipeCard, Tag
+	RecipeCard, Tag, PageHeader
 }

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
 
 import { connect } from 'react-redux';
 import { getCategories } from '../../../app_state/action_creators/getActions.jsx';
 
-import { NavButton, StyledButton, DescriptionCard, DescriptionLoadingCards } from '../../../static_components';
+import { PageHeader, DescriptionCard, DescriptionLoadingCards } from '../../../static_components';
 import styles from './index.module.css';
 
 function Categories({ categories, getCategories }){
 	const [loading, setLoading] = useState(true);
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
@@ -36,11 +34,7 @@ function Categories({ categories, getCategories }){
 */
 	return (
 		<React.Fragment>
-			<header className={styles.categoriesHeader}>
-				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2>Categories</h2>
-				<NavButton text="Home" path="/Home" />
-			</header>
+			<PageHeader>Categories</PageHeader>
 			<div className={styles.flexWrap}>
 			{
 				loading ?

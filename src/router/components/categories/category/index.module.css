@@ -5,28 +5,6 @@
 	margin:auto;
 	width:80vw;
 }
-header.categoryHeader {
-	position: relative;
-	margin:auto;
-	width:50vw;
-}
-header.categoryHeader > div {
-	display:inline-block;
-	position: absolute;
-	top: 20px;
-}
-header.categoryHeader > div:first-of-type {
-	left: 30px;
-}
-header.categoryHeader > div:last-of-type {
-	right: 30px;
-}
-header.categoryHeader > h2 {
-	text-decoration: underline;
-	display:inline-block;
-	margin-left:11.15rem;
-	margin-right:11.15rem;
-}
 .flexWrap > section {
 	margin:3rem;
 }

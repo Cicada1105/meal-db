@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 
 import { connect } from 'react-redux'
 import { filterArea } from '../../../../app_state/action_creators/filterActions.jsx';
 
-import { NavButton, StyledButton, ImageCard, ImageLoadingCards } from '../../../../static_components';
+import { PageHeader, ImageCard, ImageLoadingCards } from '../../../../static_components';
 import styles from './index.module.css';
 
 function Area({ meals, filterArea }) {
@@ -13,7 +13,6 @@ function Area({ meals, filterArea }) {
 
 	// Extract out necessary values from parameters
 	const { areaID } = useParams();
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areaID}`)
@@ -28,11 +27,7 @@ function Area({ meals, filterArea }) {
 
 	return (
 		<React.Fragment>
-			<header className={styles.areaHeader}>
-				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2>{ areaID }</h2>
-				<NavButton text="Home" path="/Home" />
-			</header>
+			<PageHeader>{ areaID }</PageHeader>
 			<div className={styles.flexWrap}>
 			{
 				loading ?

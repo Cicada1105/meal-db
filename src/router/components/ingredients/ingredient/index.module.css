@@ -5,31 +5,6 @@
 	margin:auto;
 	width:80vw;
 }
-header.ingredientHeader {
-	position: relative;
-	margin:auto;
-	width:50vw;
-}
-header.ingredientHeader > a {
-	display:inline-block;
-	position: absolute;
-	top: 20px;
-}
-header.ingredientHeader > div:first-of-type {
-	left: 30px;
-}
-header.ingredientHeader > div:last-of-type {
-	right: 30px;
-}
-header.ingredientHeader > h2 {
-	text-decoration: underline;
-	display:inline-block;
-	margin-left:11rem;
-	margin-right:11rem;
-}
-header.ingredientHeader + h3 {
-	color: white;
-}
 .flexWrap > section {
 	margin:3rem;
 }
