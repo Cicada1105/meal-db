@@ -69,7 +69,7 @@ function Meal({ meal, filterID }) {
 		{
 			loading ?
 				<h2>Loading...</h2> :
-				<RecipeCard {..._meal} btnText="Home" btnPath="/Home" />
+				<RecipeCard {..._meal} />
 		}
 		</React.Fragment>
 	);
