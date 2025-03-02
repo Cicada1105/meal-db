@@ -13,7 +13,7 @@ function DescriptionCard(props) {
 				<img src={props.imageURL} alt={props.header} onClick={() => navigate( props.imageLink )} />
 			</a>
 			<div className={styles.cardBg}></div>
-			<p>{props.descr}</p> 
+			<p className='hide-scrollbar'>{props.descr}</p> 
 		</section>
 	)
 }

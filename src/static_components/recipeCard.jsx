@@ -12,20 +12,6 @@ const RecipeCard = (props) => {
 	const scrollBlurRef = useRef(null);
 
 	useEffect(() => {
-		// const headerHeight = headerRef.current.offsetHeight;
-		// const instructionsHeight = instructionsRef.current.offsetHeight;
-		// const footerHeight = footerRef.current.offsetHeight;
-
-		// const screenBottomMargin = parseInt(window.getComputedStyle(mainRef.current).marginBottom);
-
-		// Min height = 100vh - height of area above recipe card
-		// const minHeight = window.innerHeight - (headerHeight + screenBottomMargin);
-		// content = instructions height + footer height + footer bottom offset (36px)
-		// const contentHeight = instructionsHeight + footerHeight + screenBottomMargin;
-
-		// Set background card to height of max val between minHeight and contentHeight
-		// bgCardRef.current.style.height = `${Math.max(minHeight,contentHeight)}px`;
-		// mainRef.current.style.height = `${Math.max(minHeight,contentHeight)}px`;
 		// If ingredients overflows, display scroll blur, else don't
 		scrollBlurRef.current.style.display = ingredientsRef.current.scrollHeight > ingredientsRef.current.offsetHeight ? "block" : "none";
 	},[]);
@@ -49,7 +35,7 @@ const RecipeCard = (props) => {
 
 				<article>
 					<h3>Ingredients</h3>
-					<div ref={ingredientsRef} className={styles.ingredients}>
+					<div ref={ingredientsRef} className={styles.ingredients.concat(' hide-scrollbar')}>
 					{
 						props.strIngredients.map((ingredient, i) => <p key={i}>{ ingredient }</p> )
 					}

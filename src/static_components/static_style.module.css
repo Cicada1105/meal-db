@@ -179,10 +179,6 @@ main.recipeCard {
 			justify-content: space-around;
 			align-content: space-between;
 			overflow-y:scroll;
-
-			&::-webkit-scrollbar {
-				display:none;
-			}
 		}
 		& > .scrollBlur {
 			width:100%;
