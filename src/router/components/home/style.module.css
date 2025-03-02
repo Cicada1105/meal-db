@@ -3,67 +3,64 @@ h2 {
 	color:white;
 }
 .row {
-	position:relative;
-	width:50rem;
-	height:6rem;
-	padding-bottom:2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width:min(60rem, 70%);
+	min-height:6rem;
+	padding:0 2rem 1rem;
 	margin: auto;
-	margin-top:8rem;
+	margin-top:4rem;
 	border-bottom: 2px solid rgb(46,113,166);
+
+	&:last-of-type {
+		margin-bottom: 6rem;
+	}
+	&:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(5) {
+		row-gap:1rem;
+	}
+	&:nth-of-type(1), &:nth-of-type(4) {
+		row-gap: 2rem;
+	}
+	& > a {
+		margin:0 2.5rem;
+		padding:15px 20px 14px 18px;
+	}
 }
-.row > div {
-	position:relative;
-	height:100%;
-	display: inline-block;
-}
-/*		Odd Rows: button on left and card on right		*/
-.row:nth-of-type(odd) > div.btnCont {
-	float:left;
-}
-.row:nth-of-type(odd) > div.cardCont {
-	float:right;
-}
-/*		Even Rows: button on right and card on left		*/
-.row:nth-of-type(even) > div.btnCont {
-	float:right;
-}
-.row:nth-of-type(even) > div.cardCont {
-	float:left;
-}
-div.btnCont {
-	width:188px;
-	margin:0 2.5rem;
-}
-/*div.btnCont > div {*/
-div.btnCont > a {
-	position:absolute;
-	top:50%;
-	width:131px;
-	padding:15px 20px 14px 18px;
-	transform: translateY(-50%);
-}
-div.cardCont {
-	width: 15rem;
+.cardCont {
+	position: relative;
 	font-size:1.15rem;
+
+	& > p {
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		width: 75%;
+		transform: translateX(-50%);
+	}
 }
-.cardCont > img {
-	position:relative;
+img {
+	&.cardBg1 {
+		width: 22.5rem;
+	}
+	&.cardBg2 {
+		width: 18.75rem;
+
+		&:first-of-type {
+			transform:rotateX(180deg);
+		}
+	}
 }
-img.cardBg1 {
-	height: 150%;
-	top:-20%;
-}
-.row:nth-of-type(2) img.cardBg1 {
-	left:-3rem;
-}
-.row:nth-of-type(3) img.cardBg1, .row:nth-of-type(5) img.cardBg1 {
-	right:3rem;
-}
-img.cardBg2 {
-	width:125%;
-	top:-25px;
-	left:-12%;
-}
-img.cardBg2:first-of-type {
-	transform:rotateX(180deg);
+
+@media only screen and (min-width:992px) {
+	.row {
+		flex-direction: row;
+
+		&:nth-of-type(odd) {
+			& > a {
+				order: -1;
+			}
+		}
+	}
 }
