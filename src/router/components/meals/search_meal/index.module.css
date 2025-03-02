@@ -8,6 +8,7 @@ header.searchMealHeader > button {
 	float:left;
 }
 header.searchMealHeader > h2 {
+	text-decoration: underline;
 	display:block;
 	margin:auto;
 	width:fit-content;	

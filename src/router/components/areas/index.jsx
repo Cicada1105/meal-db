@@ -38,7 +38,7 @@ function Areas({ areas, getAreas }) {
 		<React.Fragment>
 			<header className={styles.areasHeader}>
 				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2><ins>Areas</ins></h2>
+				<h2>Areas</h2>
 				<NavButton text="Home" path="/Home" />
 			</header>
 			<div className={styles.bg}></div>

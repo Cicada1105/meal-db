@@ -30,7 +30,7 @@ function Area({ meals, filterArea }) {
 		<React.Fragment>
 			<header className={styles.areaHeader}>
 				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2><ins>{ areaID }</ins></h2>
+				<h2>{ areaID }</h2>
 				<NavButton text="Home" path="/Home" />
 			</header>
 			<div className={styles.flexWrap}>

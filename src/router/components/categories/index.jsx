@@ -38,7 +38,7 @@ function Categories({ categories, getCategories }){
 		<React.Fragment>
 			<header className={styles.categoriesHeader}>
 				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2><ins>Categories</ins></h2>
+				<h2>Categories</h2>
 				<NavButton text="Home" path="/Home" />
 			</header>
 			<div className={styles.flexWrap}>

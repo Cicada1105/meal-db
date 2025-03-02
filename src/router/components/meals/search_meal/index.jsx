@@ -42,7 +42,7 @@ function SearchMeal({ meals, filterName }) {
 		<React.Fragment>
 			<header className={styles.searchMealHeader}>
 				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2><ins>Search Meal</ins></h2>
+				<h2>Search Meal</h2>
 			</header>
 			<input ref={inputRef} type="text" />
 			<search>

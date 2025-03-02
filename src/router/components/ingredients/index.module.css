@@ -13,6 +13,7 @@ header.ingredientsHeader > a {
 	display:inline-block;
 }
 header.ingredientsHeader > h2 {
+	text-decoration: underline;
 	display:inline-block;
 	margin-left:11rem;
 	margin-right:11rem;

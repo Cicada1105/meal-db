@@ -30,7 +30,7 @@ function Category({ filterCategory, meals }) {
 		<React.Fragment>
 			<header className={styles.categoryHeader}>
 				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2><ins>{ categoryID }</ins></h2>
+				<h2>{ categoryID }</h2>
 				<NavButton text="Home" path="/Home" />
 			</header>
 			<div className={styles.flexWrap}>

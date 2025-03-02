@@ -16,6 +16,7 @@ header.areasHeader > a {
 	display:inline-block;
 }
 header.areasHeader > h2 {
+	text-decoration: underline;
 	display:inline-block;
 	margin-left:12.95rem;
 	margin-right:12.95rem;

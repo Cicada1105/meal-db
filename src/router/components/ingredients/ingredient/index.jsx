@@ -30,7 +30,7 @@ function Ingredient({ meals, filterIngredient }) {
 		<React.Fragment>
 			<header className={styles.ingredientHeader}>
 				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2><ins>{ingredientID}</ins></h2>
+				<h2>{ingredientID}</h2>
 				<NavButton text="Home" path="/Home" />
 			</header>
 			{

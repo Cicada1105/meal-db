@@ -38,7 +38,7 @@ function Ingredients({ ingredients, getIngredients }) {
 		<React.Fragment>
 			<header className={styles.ingredientsHeader}>
 				<StyledButton onClickHandler={() => navigate(-1)}>Go Back</StyledButton>
-				<h2><ins>Ingredients</ins></h2>
+				<h2>Ingredients</h2>
 				<NavButton text="Home" path="/Home" />
 			</header>
 			<div className={styles.flexWrap}>
