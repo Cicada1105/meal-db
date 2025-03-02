@@ -25,32 +25,39 @@ input {
 }
 .searchCard {
 	position: relative;
-	height:10rem;
-	width:45rem;
-	margin:auto;
-	margin-top:1.5rem;
-}
-.searchCard > img {
-	position: relative;
-	float:left;
-	height:100%;
-	z-index: 1;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	padding: 1rem;
+	margin:1.5rem 1rem 0px;
+
+	& > img {
+		width: 100%;
+		z-index: 1;
+	}
+	& > a {
+		padding: 8px 18px 9px;
+		z-index: 1;
+	}
+	@media only screen and (min-width: 768px) {
+		margin:1.5rem auto 0px;
+		height:10rem;
+		width:min(50rem, 80%);
+		flex-direction: row;
+		padding: 0rem;
+
+		& > img {
+			width: unset;
+			height:100%;
+		}
+		& > a {
+			margin-right: 1rem;
+		}
+	}
 }
 .mealData {
-	position: relative;
-	float:left;
-	height:100%;
-	width:26rem;
-	display:inline-block;
-	z-index: 1;
-}
-.searchCard > a {
-	position: absolute;
-	padding: 8px 10px 9px 10px;
-	width: 7rem;
-	right: 1rem;
-	top: 50%;
-	transform: translateY(-50%);
+	align-self: stretch;
+	flex-grow: 1;
 	z-index: 1;
 }
 .arrow:hover {
