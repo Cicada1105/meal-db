@@ -18,6 +18,10 @@
 	padding: 8px 10px 9px 10px;
 /*	width:100px;*/
 	text-decoration: none;
+
+	&:hover {
+		cursor: pointer;
+	}
 }
 .recipeSection {
 	color:white;
