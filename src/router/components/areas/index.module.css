@@ -2,24 +2,40 @@
 	background-color:white;
 	position:absolute;
 	display:block;
+	transform: translateX(-50%);
+	padding: 1rem 0rem;
+	margin-top:2rem;
 	opacity: 0.5;
+	width:90vw;
 	height:90vh;
-	width:50vw;
 	z-index: 1;
-	left:25vw;
+	left:50%;
+
+	@media only screen and (min-width: 768px) {
+		width: 70vw;
+	}
 }
 .areasSection {
-	display:flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
+	display:grid;
 	overflow-y:scroll;
 	position:relative;
-	margin:auto;
-	width:50vw;
+	margin:2rem auto 1rem;
+	grid-template-columns: repeat(1, 1fr);
+	padding:1rem 0rem;
+	row-gap:2rem;
+	width:90vw;
 	height:90vh;
-	z-index: 2;
+	z-index: 1;
+
+	@media only screen and (min-width: 768px) {
+		grid-template-columns: repeat(2, 1fr);
+		width: 70vw;
+	}
+	@media only screen and (min-width: 992px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 .areasSection > a {
-	margin:2.5rem 5rem;
+	margin:auto;
 	width:130px;
 }
