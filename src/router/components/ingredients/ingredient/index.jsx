@@ -35,7 +35,7 @@ function Ingredient({ meals, filterIngredient }) {
 						meals.length === 0 ?
 						<h3>Foods with "{ingredientID}" as an ingredient are not available</h3>
 						:
-						<div className='image-card-grid'>
+						<div className='card-grid'>
 						{
 							meals.map(meal => 
 								<ImageCard key={meal.idMeal} location={{
