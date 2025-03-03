@@ -26,3 +26,18 @@ code {
     display: none;
   }
 }
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: 6rem;
+  grid-row-gap: 3rem;
+  margin:3rem auto;
+  width:80vw;
+
+  @media only screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (min-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

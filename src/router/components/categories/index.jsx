@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getCategories } from '../../../app_state/action_creators/getActions.jsx';
 
 import { PageHeader, DescriptionCard, DescriptionLoadingCards } from '../../../static_components';
-import styles from './index.module.css';
 
 function Categories({ categories, getCategories }){
 	const [loading, setLoading] = useState(true);
@@ -35,7 +34,7 @@ function Categories({ categories, getCategories }){
 	return (
 		<React.Fragment>
 			<PageHeader>Categories</PageHeader>
-			<div className={styles.flexWrap}>
+			<div className='card-grid'>
 			{
 				loading ?
 					<DescriptionLoadingCards /> :

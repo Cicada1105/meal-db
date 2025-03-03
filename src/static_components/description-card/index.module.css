@@ -1,0 +1,37 @@
+.cardBg {
+  background-color:white;
+  position:absolute;
+  opacity:0.25;
+  width: 100%;
+  height: 100%;
+  top:0px;
+}
+.descrCard {
+  position:relative;
+  color:white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.descrCard > *:not(.cardBg) {
+  position: relative;
+  z-index: 1;
+}
+.descrCard > h2 {
+  margin:2rem auto;
+  text-align: center;
+  width: 80%;
+  display: inline-block;
+}
+.descrCard img {
+  width: 80%;
+}
+.descrCard img:hover {
+  cursor:pointer;
+}
+.descrCard > p {
+  width:80%;
+  height:15ex;
+  overflow-y:scroll;
+  margin:1rem auto 2rem;
+}

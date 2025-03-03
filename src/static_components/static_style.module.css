@@ -1,12 +1,3 @@
-.cardBg {
-	background-color:white;
-	position:absolute;
-	opacity:0.25;
-	width:400px;
-	height:500px;
-	top:0px;
-	z-index: 1;
-}
 /*.tag {
 	background: linear-gradient(25deg, rgb(46,113,166), rgb(153,213,249));
 	color:white;
@@ -27,64 +18,6 @@
 	padding: 8px 10px 9px 10px;
 /*	width:100px;*/
 	text-decoration: none;
-}
-.imgCard {
-	position:relative;
-	color:white;
-	width:400px;
-	height:500px;
-}
-.imgCard > h3 {
-	position:relative;
-	margin:1rem auto;
-	text-align: center;
-	width:80%;
-	z-index: 2;
-}
-.imgCard > img {
-	position:relative;
-	width:80%;
-	z-index: 2;
-}
-.imgCard > a {
-	position:absolute;
-	left:50%;
-	bottom:0%;
-	transform:translateX(-50%);
-	margin:auto;
-	margin-bottom:1.5rem;
-	padding:15px 20px 14px 18px;
-	z-index: 2;
-}
-.descrCard {
-	position:relative;
-	color:white;
-	width:400px;
-	height:500px;
-}
-.descrCard > h2 {
-	position:relative;
-	display: inline-block;
-	margin:2rem auto;
-	text-align: center;
-	width:80%;
-	z-index: 2;
-}
-.descrCard img {
-	position:relative;
-	width:30%;
-	z-index: 2;
-}
-.descrCard img:hover {
-	cursor:pointer;
-}
-.descrCard > p {
-	position:relative;
-	width:80%;
-	height:40%;
-	overflow-y:scroll;
-	margin:5rem auto;
-	z-index: 2;
 }
 .recipeSection {
 	color:white;

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { filterCategory } from '../../../../app_state/action_creators/filterActions.jsx';
 
 import { PageHeader, ImageCard, ImageLoadingCards } from '../../../../static_components';
-import styles from './index.module.css';
 
 function Category({ filterCategory, meals }) {
 	// Local state
@@ -28,7 +27,7 @@ function Category({ filterCategory, meals }) {
 	return(
 		<React.Fragment>
 			<PageHeader>{ categoryID }</PageHeader>
-			<div className={styles.flexWrap}>
+			<div className='card-grid'>
 			{
 				(loading || meals.length === 0) ?
 					<ImageLoadingCards /> :

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { filterIngredient } from '../../../../app_state/action_creators/filterActions.jsx';
 
 import { PageHeader, ImageCard, ImageLoadingCards } from '../../../../static_components';
-import styles from './index.module.css';
 
 function Ingredient({ meals, filterIngredient }) {
 	// Local state
@@ -30,13 +29,13 @@ function Ingredient({ meals, filterIngredient }) {
 			<PageHeader>{ingredientID}</PageHeader>
 			{
 				loading ?
-					<div className={styles.flexWrap}>
+					<div className='card-grid'>
 						<ImageLoadingCards />
 					</div> : (
 						meals.length === 0 ?
 						<h3>Foods with "{ingredientID}" as an ingredient are not available</h3>
 						:
-						<div className={styles.flexWrap}>
+						<div className='image-card-grid'>
 						{
 							meals.map(meal => 
 								<ImageCard key={meal.idMeal} location={{

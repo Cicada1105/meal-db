@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getIngredients } from '../../../app_state/action_creators/getActions.jsx';
 
 import { PageHeader, DescriptionCard, DescriptionLoadingCards } from '../../../static_components';
-import styles from './index.module.css';
 
 function Ingredients({ ingredients, getIngredients }) {
 	const [loading, setLoading] = useState(true);
@@ -35,7 +34,7 @@ function Ingredients({ ingredients, getIngredients }) {
 	return (
 		<React.Fragment>
 			<PageHeader>Ingredients</PageHeader>
-			<div className={styles.flexWrap}>
+			<div className='card-grid'>
 			{
 				loading ?
 					<DescriptionLoadingCards /> : 

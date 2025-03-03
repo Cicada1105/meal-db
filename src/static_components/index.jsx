@@ -2,9 +2,9 @@
 
 // Import all static components 
 import { NavButton, StyledButton } from './button.jsx';
-import { DescriptionCard } from './descriptionCard.jsx';
+import { DescriptionCard } from './description-card';
 import { DescriptionLoadingCards } from './description-loading-cards';
-import { ImageCard } from './imageCard.jsx';
+import { ImageCard } from './image-card';
 import { ImageLoadingCards } from './image-loading-cards';
 import { PageHeader } from './page-header';
 import { RecipeCard } from './recipeCard.jsx';
